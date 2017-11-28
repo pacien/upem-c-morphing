@@ -1,6 +1,6 @@
 api-doc:
 	$(eval TMPDIR := $(shell mktemp -d))
-	naturaldocs --project $(TMPDIR) --input include/ --output HTML doc/api/
+	naturaldocs --project $(TMPDIR) --input include/ --input doc/topics/ --output HTML doc/api/
 	$(RM) -r $(TMPDIR)
 
 report:

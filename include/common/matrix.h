@@ -3,6 +3,7 @@
 
 /**
  * File: matrix.h
+ * Matrices representation and useful operations.
  *
  * See also:
  *   The film
@@ -15,7 +16,7 @@
  * Represents a square integer matrix.
  */
 typedef struct {
-  IntVector *elements;
+  IntVector **elements;
   IntVector dim;
 } IntSquareMatrix;
 
@@ -30,5 +31,17 @@ typedef struct {
  *   The integer determinant
  */
 IntVector matrix_int_det(IntSquareMatrix *matrix);
+
+/**
+ * Function: matrix_reshape
+ * Reshapes a flat vector into a bi-dimensional row pointer array.
+ *
+ * Parameters:
+ *   **bi_dim - pointer to the result row array
+ *   *flat    - flat vector
+ *   width    - number of elements per row
+ *   height   - number of rows
+ */
+void matrix_reshape(IntVector **bi_dim, IntVector *flat, int width, int height);
 
 #endif

@@ -18,9 +18,9 @@ PERCENT := %
 
 
 ##### MAIN TARGETS
-.PHONY: all test source api-doc report clean
+.PHONY: all test source report clean
 
-all: source test report;
+all: source test api-doc report;
 
 .SECONDEXPANSION:
 source: $$(patsubst $(SRC_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).o,$$(wildcard $(SRC_DIR)/**/*.c));

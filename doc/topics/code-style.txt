@@ -27,8 +27,5 @@ About: Code structure
 - It is advised to declare variables on the stack instead of the heap when possible.
 - The use of `assert` is encouraged.
 - The use of `static` functions is encouraged. Such members must be declared prior to others.
-
-
-About: Unit tests
-
-- Unit test files have the `.test.c` extension.
+- Imports should be thematically sorted, with the current spec file listed first, followed by external imports,
+  then internal imports

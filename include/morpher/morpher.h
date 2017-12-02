@@ -13,7 +13,7 @@
  * Represents an abstract coordinate transform from a source to a destination coordinate matrix,
  * constrained by a given set of points.
  */
-typedef Morphing;
+typedef void *Morphing;
 
 /**
  * Function: morpher_init

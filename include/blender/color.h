@@ -20,7 +20,10 @@ typedef uint8_t ColorComponent;
  * Compatible with the libMLV representation.
  */
 typedef union {
-  ColorComponent r, g, b, a;
+  struct {
+    ColorComponent r, g, b, a;
+  } rgba;
+
   MLV_Color mlv;
 } Color;
 

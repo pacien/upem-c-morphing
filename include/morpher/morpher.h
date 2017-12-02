@@ -7,13 +7,16 @@
  */
 
 #include "common/geom.h"
+#include "common/time.h"
 
 /**
  * Type: Morphing
  * Represents an abstract coordinate transform from a source to a destination coordinate matrix,
  * constrained by a given set of points.
  */
-typedef void *Morphing;
+typedef struct {
+  CartesianVector dim;
+} Morphing;
 
 /**
  * Function: morpher_init
@@ -31,7 +34,7 @@ void morpher_init(Morphing *morphing, IntVector width, IntVector height);
  * Frees any resources allocated to a morphing.
  *
  * Parameters:
- *   *morphin* - pointer to the morphing to destroy
+ *   *morphing - pointer to the morphing to destroy
  */
 void morpher_free(Morphing *morphing);
 
@@ -60,5 +63,17 @@ void morpher_add_constraint(Morphing *morphing, CartesianVector origin, Cartesia
  *   A cartesian coordinate mapping from the origin to the target matrix of the given point
  */
 CartesianMapping morpher_get_point_mapping(Morphing *morphing, CartesianVector point, TimeVector frame);
+
+/**
+ * Function: morpher_get_dim
+ * Returns the dimension of the morphing.
+ *
+ * Parameters:
+ *   *morphing - the morphing
+ *
+ * Returns:
+ *   the dimension as a vector
+ */
+CartesianVector morpher_get_dim(Morphing *morphing);
 
 #endif

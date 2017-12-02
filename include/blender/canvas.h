@@ -8,7 +8,7 @@
  *   Freedom, according to Bob Ross
  */
 
-#include <MLV_image.h>
+#include <MLV/MLV_image.h>
 #include "common/geom.h"
 #include "color.h"
 
@@ -17,7 +17,7 @@
  * Represents a fixed size RGBa pixel matrix.
  */
 typedef struct {
-  MLV_Image mlv;
+  MLV_Image *mlv;
 } Canvas;
 
 /**

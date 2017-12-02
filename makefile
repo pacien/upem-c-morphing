@@ -9,8 +9,8 @@ BIN_DIR := bin
 ##### CC PARAMS
 CC := gcc
 CFLAGS := -ansi -Wall -pedantic -std=gnu99 -O2
-IFLAGS := -I$(INCL_DIR)
-LFLAGS := $(LLFLAGS) -lMLV
+IFLAGS += -I$(INCL_DIR)
+LFLAGS := $(LLFLAGS) -lMLV -lm
 
 
 ##### UTILS
@@ -26,8 +26,7 @@ all: source test api-doc report;
 source: $$(patsubst $(SRC_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).o,$$(wildcard $(SRC_DIR)/**/*.c));
 
 .SECONDEXPANSION:
-test: $$(patsubst $(TEST_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).test,$$(wildcard $(TEST_DIR)/**/*.c))
-	$(foreach test,$(filter-out $<,$^),./$(test))
+test: $$(patsubst $(TEST_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).test,$$(wildcard $(TEST_DIR)/**/*.c));
 
 report: $(DOC_DIR)/project-report.pdf;
 
@@ -45,6 +44,7 @@ $(BIN_DIR)/%.o: $$(patsubst $(BIN_DIR)/$$(PERCENT).o,$(SRC_DIR)/$$(PERCENT).c,$$
 .SECONDEXPANSION:
 $(BIN_DIR)/%.test: $$(patsubst $(BIN_DIR)/$$(PERCENT).test,$(TEST_DIR)/$$(PERCENT).c,$$@) source | $$(@D)/
 	$(CC) $(CFLAGS) $(IFLAGS) $(BIN_DIR)/**/*.o $< -o $@ $(LFLAGS)
+	./$@
 
 $(BIN_DIR)/%/:
 	mkdir -p $(@D)

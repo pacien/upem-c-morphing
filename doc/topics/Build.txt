@@ -1,0 +1,31 @@
+Title: Build
+
+List of the make targets. The global `make all` and `make clean` are also defined.
+
+
+About: Compiling
+
+> make source
+
+Compiles all modules.
+
+
+About: Automatic tests
+
+> make test
+
+Compiles and runs all unit tests.
+
+
+About: API documentation
+
+> make api-doc
+
+Generates the HTML API documentation with Natural Docs v1.5.
+
+
+About: Project report
+
+> make report
+
+Generates the project report using Pandoc.

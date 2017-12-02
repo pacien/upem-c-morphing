@@ -3,12 +3,12 @@
 #include <math.h>
 #include "morpher/morpher.h"
 
-static ColorComponent blend_components(ColorComponent origin, ColorComponent target, TimeVector frame) {
+static inline ColorComponent blend_components(ColorComponent origin, ColorComponent target, TimeVector frame) {
+  // https://www.youtube.com/watch?v=LKnqECcg6Gw
   return (ColorComponent) sqrt((TIME_UNIT - frame) * pow(origin, 2) + frame * pow(target, 2));
 }
 
-Color blender_blend_colors(Color origin, Color target, TimeVector frame) {
-  assert(frame >= TIME_ORIGIN && frame <= TIME_UNIT);
+static inline Color blend_colors(Color origin, Color target, TimeVector frame) {
   return (Color) {{blend_components(origin.rgba.r, target.rgba.r, frame),
                    blend_components(origin.rgba.g, target.rgba.g, frame),
                    blend_components(origin.rgba.b, target.rgba.b, frame),
@@ -34,11 +34,7 @@ void blender_blend_canvas(Canvas *canvas, Canvas *source, Canvas *target, Morphi
     point.y = flat_dim / dim.y;
 
     mapping = morpher_get_point_mapping(morphing, point, frame);
-
-    pixel = blender_blend_colors(canvas_get_pixel(source, mapping.origin),
-                                 canvas_get_pixel(target, mapping.target),
-                                 frame);
-
+    pixel = blend_colors(canvas_get_pixel(source, mapping.origin), canvas_get_pixel(target, mapping.target), frame);
     canvas_set_pixel(canvas, point, pixel);
   }
 }

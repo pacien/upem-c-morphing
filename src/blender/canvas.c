@@ -9,7 +9,7 @@ void canvas_free(Canvas *canvas) {
 }
 
 void canvas_set_pixel(Canvas *canvas, CartesianVector position, Color color) {
-  MLV_set_pixel_on_image(position.x, position.x, color.mlv, canvas->mlv);
+  MLV_set_pixel_on_image(position.x, position.y, color.mlv, canvas->mlv);
 }
 
 Color canvas_get_pixel(Canvas *canvas, CartesianVector position) {

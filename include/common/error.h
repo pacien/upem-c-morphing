@@ -16,7 +16,7 @@
  * Function: rage quit
  * Logs the supplied error message to stderr before exiting the program with an error status code.
  *
- * Parameters;
+ * Parameters:
  *   *msg - error message to log
  */
 void rage_quit(const char *msg);

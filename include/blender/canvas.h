@@ -65,7 +65,7 @@ void canvas_set_pixel(Canvas *canvas, CartesianVector position, Color color);
 Color canvas_get_pixel(Canvas *canvas, CartesianVector position);
 
 /**
- * Function: canvas_get_size
+ * Function: canvas_get_dim
  * Returns the size (in pixels) of the given canvas.
  *
  * Parameters:

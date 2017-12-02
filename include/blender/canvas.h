@@ -74,6 +74,6 @@ Color canvas_get_pixel(Canvas *canvas, CartesianVector position);
  * Returns:
  *   The size of the canvas
  */
-CartesianVector canvas_get_size(Canvas *canvas);
+CartesianVector canvas_get_dim(Canvas *canvas);
 
 #endif

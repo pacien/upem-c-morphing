@@ -18,6 +18,6 @@ Color canvas_get_pixel(Canvas *canvas, CartesianVector position) {
   return (Color) {{r, g, b, a}};
 }
 
-CartesianVector canvas_get_size(Canvas *canvas) {
+CartesianVector canvas_get_dim(Canvas *canvas) {
   return (CartesianVector) {MLV_get_image_width(canvas->mlv), MLV_get_image_height(canvas->mlv)};
 }

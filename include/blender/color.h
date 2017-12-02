@@ -8,6 +8,9 @@
  *   A rainbow
  */
 
+#include <MLV/MLV_color.h>
+#include <stdbool.h>
+
 /**
  * Type: ColorComponent
  * Represents a single colour component of 32-bits RGBa tuple.
@@ -26,5 +29,18 @@ typedef union {
 
   MLV_Color mlv;
 } Color;
+
+/**
+ * Function: color_equals
+ * Compares the supplied colors.
+ *
+ * Parameters:
+ *   c1 - the first color
+ *   c2 - the second color
+ *
+ * Returns:
+ *   T(c1 is the same color as c2)
+ */
+bool color_equals(Color c1, Color c2);
 
 #endif

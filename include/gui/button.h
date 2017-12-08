@@ -1,6 +1,7 @@
 #ifndef UPEM_MORPHING_BUTTON
 #define UPEM_MORPHING_BUTTON
 
+#include "window.h"
 /**
  * File: button.h
  * Buttons handling

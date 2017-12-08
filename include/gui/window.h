@@ -9,14 +9,27 @@
  *  The famous OS
  */
 
+/**
+ * Type: ClickHandler
+ * Type of functions that handle mouse's clicks.
+ */
 typedef void (*ClickHandler)(int x_pos, int y_pos);
+
+/**
+ * Type: PrintMethod
+ * Type of functions that will be used to print our component. This must be initialized by the initialization function of the component.
+ */
+typedef void (*PrintMethod)(void);
+
 /**
  * Type: Component
  * Abstract component that handles clicks.
  */
 typedef struct {
   int width, height;
+  int x_pos, y_pos;
   ClickHandler click_handler;
+  PrintMethod print_method;
 } Component;
 /**
  * Type: Window
@@ -26,6 +39,7 @@ typedef struct {
   int width, height;
   Component *components;
 } Window;
+
 /**
  * Function: window_init
  * Initializes a window.
@@ -37,6 +51,7 @@ typedef struct {
  *  *title - title of the actual window
  */
 void window_init(Window *window, int width, int height, char *title);
+
 /**
  * Function: window_free
  * Frees the resources supported by the window and the window itself.
@@ -45,6 +60,7 @@ void window_init(Window *window, int width, int height, char *title);
  *  *window - pointer to the input window
  */
 void window_free(Window *window);
+
 /**
  * Function: window_add_component
  * Adds components to the current window at the position specified in x and y.
@@ -52,9 +68,8 @@ void window_free(Window *window);
  * Parameters:
  *  *window - pointer to the input window
  *  *component - pointer to the input component
- *  x_pos - coordinate on x axis to place the component
- *  y_pos - coordinate on y axis to place the component
  */
-void window_add_component(Window *window, Component *component, int x_pos, int y_pos);
+void window_add_component(Window *window, Component *component);
+
 
 #endif

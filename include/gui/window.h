@@ -9,6 +9,8 @@
  *  The famous OS
  */
 
+#include "group.h"
+
 /**
  * Type: ClickHandler
  * Type of functions that handle mouse's clicks.
@@ -37,7 +39,8 @@ typedef struct {
  */
 typedef struct {
   int width, height;
-  Component *components;
+  Group *group_buttons;
+  Group *group_images;
 } Window;
 
 /**

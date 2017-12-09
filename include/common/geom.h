@@ -15,16 +15,24 @@
 typedef int32_t IntVector;
 
 /**
- * Type: CartesianVector
+ * Struct: CartesianVector
  * An abstract 2-D vector in cartesian coordinates.
+ *
+ * Fields:
+ *   x - the horizontal component
+ *   y - the vertical component
  */
 typedef struct {
   IntVector x, y;
 } CartesianVector;
 
 /**
- * Type: CartesianMapping
+ * Struct: CartesianMapping
  * A tuple of cartesian vectors representing a mapping.
+ *
+ * Fields:
+ *   origin - preimage vector
+ *   target - image vector
  */
 typedef struct {
   CartesianVector origin, target;

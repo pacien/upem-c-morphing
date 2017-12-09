@@ -57,9 +57,9 @@ clean-bin:
 .PHONY: api-doc clean-api-doc
 
 api-doc:
-	$(eval TMPDIR := $(shell mktemp -d))
-	naturaldocs --project $(TMPDIR) --input $(INCLUDE_DIR) --input $(DOC_DIR)/topics/ --output HTML $(DOC_DIR)/api/
-	$(RM) -r $(TMPDIR)
+	naturaldocs --project $(DOC_DIR)/gen/ --output HTML $(DOC_DIR)/api/ \
+	            --input $(INCLUDE_DIR) --input $(DOC_DIR)/topics/
+	$(RM) $(DOC_DIR)/gen/Menu.txt
 
 clean-api-doc:
 	$(RM) -r $(DOC_DIR)/api/*

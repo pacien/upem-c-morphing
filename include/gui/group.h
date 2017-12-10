@@ -5,7 +5,7 @@
  * File: group.h
  * Group of components
  */
-#include "window.h"
+#include "component.h"
 
 /**
  * Struct: _GroupElement

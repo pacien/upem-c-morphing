@@ -12,8 +12,12 @@
 #include "geom.h"
 
 /**
- * Type: IntSquareMatrix
+ * Struct: IntSquareMatrix
  * Represents a square integer matrix.
+ *
+ * Fields:
+ *   **elements - NULL-terminated array of element pointers
+ *   dim        - dimension
  */
 typedef struct {
   IntVector **elements;

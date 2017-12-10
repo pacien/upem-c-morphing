@@ -18,15 +18,15 @@ PERCENT := %
 
 
 ##### MAIN TARGETS
-.PHONY: all test source report clean
+.PHONY: all check build report clean
 
-all: source test api-doc report;
-
-.SECONDEXPANSION:
-source: $$(patsubst $(SRC_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).o,$$(wildcard $(SRC_DIR)/**/*.c));
+all: build check api-doc report;
 
 .SECONDEXPANSION:
-test: $$(patsubst $(TEST_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).test,$$(wildcard $(TEST_DIR)/**/*.c));
+build: $$(patsubst $(SRC_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).o,$$(wildcard $(SRC_DIR)/**/*.c));
+
+.SECONDEXPANSION:
+check: $$(patsubst $(TEST_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).test,$$(wildcard $(TEST_DIR)/**/*.c));
 
 report: $(DOC_DIR)/project-report.pdf;
 
@@ -42,7 +42,7 @@ $(BIN_DIR)/%.o: $$(patsubst $(BIN_DIR)/$$(PERCENT).o,$(SRC_DIR)/$$(PERCENT).c,$$
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 .SECONDEXPANSION:
-$(BIN_DIR)/%.test: $$(patsubst $(BIN_DIR)/$$(PERCENT).test,$(TEST_DIR)/$$(PERCENT).c,$$@) source | $$(@D)/
+$(BIN_DIR)/%.test: $$(patsubst $(BIN_DIR)/$$(PERCENT).test,$(TEST_DIR)/$$(PERCENT).c,$$@) build | $$(@D)/
 	$(CC) $(CFLAGS) $(IFLAGS) $(BIN_DIR)/**/*.o $< -o $@ $(LFLAGS)
 	./$@
 
@@ -57,9 +57,9 @@ clean-bin:
 .PHONY: api-doc clean-api-doc
 
 api-doc:
-	$(eval TMPDIR := $(shell mktemp -d))
-	naturaldocs --project $(TMPDIR) --input $(INCLUDE_DIR) --input $(DOC_DIR)/topics/ --output HTML $(DOC_DIR)/api/
-	$(RM) -r $(TMPDIR)
+	naturaldocs --project $(DOC_DIR)/gen/ --output HTML $(DOC_DIR)/api/ \
+	            --input $(INCLUDE_DIR) --input $(DOC_DIR)/topics/
+	$(RM) $(DOC_DIR)/gen/Menu.txt
 
 clean-api-doc:
 	$(RM) -r $(DOC_DIR)/api/*

@@ -28,13 +28,5 @@ typedef struct {
  */
 void button_init(Button *button, char *text);
 
-/**
- * Function: button_free
- * Frees the resources for the button.
- *
- * Parameters:
- *  *button - pointer to the input button
- */
-void button_free(Button *button);
 
 #endif

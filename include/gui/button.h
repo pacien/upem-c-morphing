@@ -1,15 +1,18 @@
 #ifndef UPEM_MORPHING_BUTTON
 #define UPEM_MORPHING_BUTTON
 
-#include "window.h"
 /**
  * File: button.h
  * Buttons handling
  */
+#include "window.h"
 
 /**
- * Type: Button
+ * Struct: Button
  * Component that can be triggered by click to execute a specific action.
+ *
+ * Fields:
+ *   component - component that will acted as a button thanks to a rightful initialization.
  */
 typedef struct {
   Component component;

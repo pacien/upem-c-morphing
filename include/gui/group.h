@@ -29,13 +29,15 @@ typedef struct _GroupElement {
  * Parameters:
  *  component - Component used for the Group to catch clicks and handle print to delegate to the components contented in it
  *  *group_head - pointer to the head of the list that regroup all the components contained inside of the group
+ *  padding - padding for all components
  */
 typedef struct {
   Component component;
   GroupElement *group_head;
+  int padding;
 } Group;
 
-void group_init(Group *group, int padding);
+void group_init(Group *group, int width, int height, int x_pos, int y_pos, int padding);
 
 void group_free(Group *group);
 

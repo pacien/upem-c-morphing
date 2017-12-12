@@ -21,7 +21,7 @@ typedef void (*ClickHandler)(int x_pos, int y_pos);
  * Type: PrintMethod
  * Type of functions that will be used to print our component. This must be initialized by the initialization function of the component.
  */
-typedef void (*PrintMethod)(void);
+typedef void (*PrintMethod)(void*);
 
 /**
  * Struct: Component

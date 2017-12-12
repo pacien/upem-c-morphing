@@ -16,11 +16,11 @@ void group_print(void *parameter) {
 
 void group_init(Group *group, int width, int height, int x_pos, int y_pos, int padding) {
   assert(group != NULL);
-  assert(width>0);
-  assert(height>0);
-  assert(x_pos>=0);
-  assert(y_pos>=0);
-  assert(padding>=0);
+  assert(width > 0);
+  assert(height > 0);
+  assert(x_pos >= 0);
+  assert(y_pos >= 0);
+  assert(padding >= 0);
   group->component.width = width;
   group->component.height = height;
   group->component.x_pos = x_pos;

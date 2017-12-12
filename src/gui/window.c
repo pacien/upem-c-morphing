@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <gui/window.h>
+#include <gui/group.h>
+#include <gui/component.h>
 #include "gui/window.h"
 #include "common/mem.h"
 #include "string.h"
@@ -7,6 +9,7 @@
 #include "MLV/MLV_window.h"
 
 void window_init(Window *window, int width, int height, char *title) {
+  assert(window != NULL);
   assert(width > 0);
   assert(height > 0);
   window->width = width;
@@ -15,9 +18,9 @@ void window_init(Window *window, int width, int height, char *title) {
   window->title = malloc_or_die(sizeof(char) * (strlen(title) + 1));
   strcpy(window->title, title);
   window->group_buttons = malloc_or_die(sizeof(Group));
-  group_init(window->group_buttons, 5);
+  group_init(window->group_buttons,window->width,100,0,window->height-100,5);
   window->group_pictureframe = malloc_or_die(sizeof(Group));
-  group_init(window->group_pictureframe, 5);
+  group_init(window->group_pictureframe,window->width,window->height-100,0,0,5);
 }
 
 void window_free(Window *window) {

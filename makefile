@@ -57,8 +57,8 @@ clean-bin:
 .PHONY: api-doc clean-api-doc
 
 api-doc:
-	naturaldocs --project $(DOC_DIR)/gen/ --output HTML $(DOC_DIR)/api/ \
-	            --input $(INCLUDE_DIR) --input $(DOC_DIR)/topics/
+	naturaldocs --rebuild --project $(DOC_DIR)/gen/ --output HTML $(DOC_DIR)/api/ \
+	                      --input $(INCL_DIR) --input $(DOC_DIR)/topics/
 	$(RM) $(DOC_DIR)/gen/Menu.txt
 
 clean-api-doc:

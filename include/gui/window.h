@@ -11,6 +11,8 @@
 
 #include "group.h"
 #include "component.h"
+#include "button.h"
+#include "pictureframe.h"
 
 /**
  * Struct: Window
@@ -57,9 +59,9 @@ void window_free(Window *window);
  *
  * Parameters:
  *  *window - pointer to the input window
- *  *component - pointer to the input component
+ *  *button - pointer to the input button
  */
-void window_add_button(Window *window, Component *component);
+void window_add_button(Window *window, Button *button);
 
 /**
  * Function: window_add_pictureframe
@@ -67,9 +69,9 @@ void window_add_button(Window *window, Component *component);
  *
  * Parameters:
  *  *window - pointer to the input window
- *  *component - pointer to the input component
+ *  *pictureFrame - pointer to the input picture frame
  */
-void window_add_pictureframe(Window *window, Component *component);
+void window_add_pictureframe(Window *window, PictureFrame *pictureFrame);
 
 /**
  * Function: window_create

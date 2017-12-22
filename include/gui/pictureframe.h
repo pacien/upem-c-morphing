@@ -1,6 +1,8 @@
 #ifndef UPEM_MORPHING_PITUREFRAME
 #define UPEM_MORPHING_PITUREFRAME
 
+#include <blender/canvas.h>
+
 /**
  * File: pictureframe.h
  */

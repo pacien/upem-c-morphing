@@ -28,22 +28,33 @@ typedef struct _GroupElement {
  * Parameters:
  *  component - Component used for the Group to catch clicks and handle print to delegate to the components contented in it
  *  *group_head - pointer to the head of the list that regroup all the components contained inside of the group
- *  padding - padding for all components
+ *  margin - margin for all components
  */
 typedef struct {
   Component component;
   GroupElement *group_head;
-  int padding;
+  int margin;
 } Group;
 
 /**
  * Function: group_print
- * Print method for a group (BETA VERSION).
+ * Print method for a group that will print all components contained in.
  *
  * Parameters:
- *  *parameter - pointer that will be casted into a Group to print
+ *  *parameterSelf - pointer that will be casted into a Group to print
  */
-void group_print(void *parameter);
+void group_print(Component *parameterSelf);
+
+/**
+ * Function: group_click_handler
+ * Delegates the click handling to the component contained inside.
+ *
+ * Parameters:
+ *  x_pos - position of the mouse on x axis
+ *  y_pos - position of the mouse on y axis
+ *  *parameterSelf - pointer that will be casted into a Group to print
+ */
+void group_click_handler(int x_pos, int y_pos, Component *parameterSelf);
 
 /**
  * Function: group_init
@@ -55,9 +66,9 @@ void group_print(void *parameter);
  *  height - height of the current group
  *  x_pos - position on the x axis from the upper left corner
  *  y_pos - position on the y axis from the upper left corner
- *  padding - space between each components
+ *  margin - space between each components
  */
-void group_init(Group *group, int width, int height, int x_pos, int y_pos, int padding);
+void group_init(Group *group, int width, int height, int x_pos, int y_pos, int margin);
 
 /**
  * Function: group_free
@@ -77,5 +88,6 @@ void group_free(Group *group);
  *  *component - component which is added to the group
  */
 void group_add_component(Group *group, Component *component);
+
 
 #endif

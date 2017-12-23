@@ -36,4 +36,15 @@ void quadrilateral_flip_diagonal(TriangleMap *t1, TriangleMap *t2);
  */
 bool quadrilateral_is_delaunay(TriangleMap *t1, TriangleMap *t2);
 
+/**
+ * Function: quadrilateral_propagate_delaunay
+ * Ensures that the quadrilateral spawned by the given triangles fulfills the Delaunay criterion,
+ * flipping the diagonal if necessary and propagating the changes to the neighbouring triangles.
+ *
+ * Parameters:
+ *   *start    - the starting triangle
+ *   *neighbor - a neighboring triangle
+ */
+void quadrilateral_propagate_delaunay(TriangleMap *start, TriangleMap *neighbor);
+
 #endif

@@ -1,7 +1,6 @@
 #include "morpher/trianglemap.h"
 #include <stdlib.h>
 #include <assert.h>
-#include "common/geom.h"
 #include "common/mem.h"
 
 TriangleMap *trianglemap_create(CartesianMapping v1, CartesianMapping v2, CartesianMapping v3) {
@@ -44,6 +43,12 @@ void trianglemap_set_neighbors(TriangleMap *t, TriangleMap *n1, TriangleMap *n2,
 
 void trianglemap_replace_neighbor(TriangleMap *t, TriangleMap *old, TriangleMap *new) {
   if (t != NULL) t->neighbors[trianglemap_find_common_edge(t, old)] = new;
+}
+
+void trianglemap_foreach_neighbor(TriangleMap *t, void (*f)(TriangleMap *, TriangleMap *)) {
+  int cursor;
+  assert(t != NULL);
+  for (cursor = 0; cursor < 3; ++cursor) if (t->neighbors[cursor] != NULL) f(t, t->neighbors[cursor]);
 }
 
 TriangleMap *trianglemap_split(TriangleMap *t, CartesianMapping v) {

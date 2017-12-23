@@ -1,5 +1,6 @@
 #include "morpher/quadrilateral.h"
-#include "common/geom.h"
+#include <stdlib.h>
+#include <assert.h>
 #include "morpher/matrix.h"
 
 static inline IntVector p2(IntVector n) {
@@ -47,12 +48,24 @@ static inline void rotate_neighbors(TriangleMap *t1, TriangleMap *t2, int e1, in
 }
 
 void quadrilateral_flip_diagonal(TriangleMap *t1, TriangleMap *t2) {
-  int e1 = trianglemap_find_common_edge(t1, t2), e2 = trianglemap_find_common_edge(t2, t1);
+  int e1, e2;
+  assert(t1 != NULL && t2 != NULL);
+  e1 = trianglemap_find_common_edge(t1, t2);
+  e2 = trianglemap_find_common_edge(t2, t1);
   rotate_vertices(t1, t2, e1, e2);
   rotate_neighbors(t1, t2, e1, e2);
 }
 
 bool quadrilateral_is_delaunay(TriangleMap *t1, TriangleMap *t2) {
+  assert(t1 != NULL && t2 != NULL);
   return not_in_circumcircle(t1, t2->vertices[(trianglemap_find_common_edge(t2, t1) + 2) % 3].origin) &&
          not_in_circumcircle(t2, t1->vertices[(trianglemap_find_common_edge(t1, t2) + 2) % 3].origin);
+}
+
+void quadrilateral_propagate_delaunay(TriangleMap *start, TriangleMap *neighbor) {
+  assert(start != NULL && neighbor != NULL);
+  if (!quadrilateral_is_delaunay(start, neighbor)) {
+    quadrilateral_flip_diagonal(start, neighbor);
+    trianglemap_foreach_neighbor(neighbor, quadrilateral_propagate_delaunay);
+  }
 }

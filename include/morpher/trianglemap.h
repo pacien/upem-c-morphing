@@ -106,6 +106,16 @@ void trianglemap_set_neighbors(TriangleMap *t, TriangleMap *n1, TriangleMap *n2,
 void trianglemap_replace_neighbor(TriangleMap *t, TriangleMap *old, TriangleMap *new);
 
 /**
+ * Function: trianglemap_foreach_neighbor
+ * Executes the given function for each existing (non-NULL) neighbour of the supplied triangle.
+ *
+ * Parameters:
+ *   *t - the base triangle
+ *   *f - the function
+ */
+void trianglemap_foreach_neighbor(TriangleMap *t, void (*f)(TriangleMap *current, TriangleMap *neighbor));
+
+/**
  * Function: trianglemap_split
  * Splits a triangle into three sub-triangles at the supplied center vertex, updating the surrounding triangles.
  * The first triangle resulting from the split is returned, with the two others chained as linear neighbours.

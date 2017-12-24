@@ -1,7 +1,16 @@
 #include "morpher/trianglemap.h"
 #include <stdlib.h>
 #include <assert.h>
+#include "morpher/quadrilateral.h"
 #include "common/mem.h"
+
+static void propagate_delaunay(TriangleMap *start, TriangleMap *neighbor) {
+  assert(start != NULL && neighbor != NULL);
+  if (!quadrilateral_is_delaunay(start, neighbor)) {
+    quadrilateral_flip_diagonal(start, neighbor);
+    trianglemap_foreach_neighbor(neighbor, propagate_delaunay);
+  }
+}
 
 TriangleMap *trianglemap_create(CartesianMapping v1, CartesianMapping v2, CartesianMapping v3) {
   TriangleMap *triangle = malloc_or_die(sizeof(TriangleMap));
@@ -49,6 +58,10 @@ void trianglemap_foreach_neighbor(TriangleMap *t, void (*f)(TriangleMap *, Trian
   int cursor;
   assert(t != NULL);
   for (cursor = 0; cursor < 3; ++cursor) if (t->neighbors[cursor] != NULL) f(t, t->neighbors[cursor]);
+}
+
+void trianglemap_propagate_delaunay(TriangleMap *t) {
+  trianglemap_foreach_neighbor(t, propagate_delaunay);
 }
 
 TriangleMap *trianglemap_split(TriangleMap *t, CartesianMapping v) {

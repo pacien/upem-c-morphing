@@ -116,6 +116,16 @@ void trianglemap_replace_neighbor(TriangleMap *t, TriangleMap *old, TriangleMap 
 void trianglemap_foreach_neighbor(TriangleMap *t, void (*f)(TriangleMap *current, TriangleMap *neighbor));
 
 /**
+ * Function: trianglemap_propagate_delaunay
+ * Ensures that the quadrilateral spawned by the given triangles and its neighbours fulfill the Delaunay criterion,
+ * flipping the diagonal if necessary and propagating the changes to the neighbouring triangles.
+ *
+ * Parameters:
+ *   *t - the starting triangle
+ */
+void trianglemap_propagate_delaunay(TriangleMap *t);
+
+/**
  * Function: trianglemap_split
  * Splits a triangle into three sub-triangles at the supplied center vertex, updating the surrounding triangles.
  * The first triangle resulting from the split is returned, with the two others chained as linear neighbours.

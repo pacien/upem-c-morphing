@@ -53,34 +53,9 @@ static void test_quadrilateral_is_delaunay(CartesianMapping A, CartesianMapping 
   trianglemap_destroy(r);
 }
 
-static void test_quadrilateral_propagate_delaunay() {
-  CartesianMapping A = m(0, 0), B = m(0, 10), C = m(10, 10), D = m(10, 0), E = m(4, 6), F = m(8, 7);
-  TriangleMap *l = trianglemap_create(A, B, C);
-  TriangleMap *r = trianglemap_create(A, C, D);
-  trianglemap_set_neighbors(l, NULL, NULL, r, r);
-  trianglemap_set_neighbors(r, l, NULL, NULL, NULL);
-  trianglemap_split(l, E);
-  trianglemap_split(r, F);
-
-  trianglemap_foreach_neighbor(r, quadrilateral_propagate_delaunay);
-
-  {
-    TriangleMap *triangle;
-    int neighbor_index;
-    for (triangle = l; triangle != NULL; triangle = triangle->next)
-      for (neighbor_index = 0; neighbor_index < 3; ++neighbor_index)
-        if (triangle->neighbors[neighbor_index] != NULL)
-          assert(quadrilateral_is_delaunay(triangle, triangle->neighbors[neighbor_index]));
-  }
-
-  trianglemap_destroy(l);
-  trianglemap_destroy(r);
-}
-
 int main(int argc, char **argv) {
   test_quadrilateral_flip_diagonal();
   test_quadrilateral_is_delaunay(m(0, 0), m(0, 3), m(3, 3), m(2, 1), false);
   test_quadrilateral_is_delaunay(m(0, 0), m(0, 3), m(3, 3), m(4, -1), true);
-  test_quadrilateral_propagate_delaunay();
   return 0;
 }

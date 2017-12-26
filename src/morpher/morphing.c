@@ -1,4 +1,5 @@
 #include "morpher/morphing.h"
+#include <malloc.h>
 #include "common/mem.h"
 
 static inline TriangleMap *init_trianglemap(IntVector width, IntVector height) {
@@ -34,6 +35,7 @@ Morphing *morphing_create(IntVector width, IntVector height) {
 
 void morphing_destroy(Morphing *m) {
   while (m->first != NULL) m->first = trianglemap_destroy(m->first);
+  free(m);
 }
 
 void morphing_add_constraint(Morphing *m, CartesianVector origin, CartesianVector destination) {

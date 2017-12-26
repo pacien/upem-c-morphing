@@ -30,7 +30,7 @@ TriangleMap *trianglemap_to(TriangleMap *t, CartesianVector v) {
   int edge;
 
   for (edge = 0; edge < 3; ++edge)
-    if (triangle_area(t->vertices[edge].origin, t->vertices[(edge + 1) % 3].origin, v) >= 0)
+    if (triangle_area(t->vertices[edge].origin, t->vertices[(edge + 1) % 3].origin, v) > 0)
       return t->neighbors[edge];
 
   return t;

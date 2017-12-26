@@ -14,7 +14,7 @@
  * Represents a triangle mapping.
  *
  * Fields:
- *   vertices[]   - array of vertices
+ *   vertices[]   - array of vertices mappings, positively ordered
  *   *neighbors[] - array of neighboring triangles ordered by the edges spawned by the vertices
  *   *next        - pointer to another triangle for linear browsing, or NULL
  */

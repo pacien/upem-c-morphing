@@ -1,7 +1,6 @@
 #include "blender/blender.h"
 #include <assert.h>
 #include <math.h>
-#include "morpher/morpher.h"
 
 static inline ColorComponent blend_components(ColorComponent origin, ColorComponent target, TimeVector frame) {
   // https://www.youtube.com/watch?v=LKnqECcg6Gw
@@ -21,7 +20,7 @@ void blender_blend_canvas(Canvas *canvas, Canvas *source, Canvas *target, Morphi
   CartesianMapping mapping;
   Color pixel;
 
-  dim = morpher_get_dim(morphing);
+  dim = morphing->dim;
 
   assert(dim.x > 0 && dim.y > 0);
   assert(vector_equals(dim, canvas_get_dim(canvas)));
@@ -33,7 +32,7 @@ void blender_blend_canvas(Canvas *canvas, Canvas *source, Canvas *target, Morphi
     point.x = flat_dim % dim.y;
     point.y = flat_dim / dim.y;
 
-    mapping = morpher_get_point_mapping(morphing, point, frame);
+    mapping = (CartesianMapping) {point, point};
     pixel = blend_colors(canvas_get_pixel(source, mapping.origin), canvas_get_pixel(target, mapping.target), frame);
     canvas_set_pixel(canvas, point, pixel);
   }

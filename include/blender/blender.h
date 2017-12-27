@@ -8,7 +8,7 @@
 
 #include "common/time.h"
 #include "blender/canvas.h"
-#include "morpher/morpher.h"
+#include "morpher/morphing.h"
 
 /**
  * Function: blender_blend_canvas

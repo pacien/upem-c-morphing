@@ -13,7 +13,7 @@ static void test_group() {
   Button button3;
 
   button_init(&button1, "OK", 10, 500, 256, button_click_test);
-  button_init(&button2,"Bouton magique",10, 500,290, NULL);
+  button_init(&button2,"Bouton magique",10, 500,290, button_click_test);
   button_init(&button3,"Très lonnggggg boooouttttooooon",10,0,0,button_click_test);
 
   window_add_button(&window,&button1);

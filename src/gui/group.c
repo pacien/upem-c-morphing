@@ -21,7 +21,8 @@ void group_print(Component *parameterSelf) {
 void group_click_handler(int x_pos, int y_pos, Component *parameterSelf) {
   assert(parameterSelf != NULL);
   Group *self = (Group *) parameterSelf;
-  if (self->group_head != NULL) {
+
+  if (self->group_head != NULL && self->component.activated) {
     GroupElement *p = self->group_head;
     while (p != NULL) {
       p->sub_component->click_handler(x_pos, y_pos, p->sub_component);
@@ -41,6 +42,7 @@ void group_init(Group *group, int width, int height, int x_pos, int y_pos, int m
   group->component.height = height;
   group->component.x_pos = x_pos;
   group->component.y_pos = y_pos;
+  group->component.activated = true;
   group->component.print_method = group_print;
   group->component.click_handler = group_click_handler;
   group->margin = margin;

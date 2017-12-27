@@ -33,7 +33,7 @@ void button_click_test(int x, int y, Component *parameterSelf) {
   assert(y >= 0);
   assert(parameterSelf != NULL);
   Button *self = (Button *) parameterSelf;
-  if (button_is_selected(x, y, self)) {
+  if (button_is_selected(x, y, self) && self->component.activated) {
     printf("OK\n");
   }
 }
@@ -51,6 +51,7 @@ button_init(Button *button, const char *text, int sizeInterligne, int x_pos, int
   MLV_get_size_of_adapted_text_box(text, sizeInterligne, &button->component.width, &button->component.height);
   button->component.x_pos = x_pos;
   button->component.y_pos = y_pos;
+  button->component.activated = true;
   button->component.print_method = button_print;
   button->component.click_handler = clickHandler;
 }

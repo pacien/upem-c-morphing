@@ -28,7 +28,7 @@ static inline void ensure_delaunay_neighborhood(TriangleMap *t) {
 Morphing *morphing_create(IntVector width, IntVector height) {
   Morphing *m = malloc_or_die(sizeof(Morphing));
   m->dim = (CartesianVector) {width, height};
-  m->first = init_trianglemap(width, height);
+  m->first = init_trianglemap(width - 1, height - 1);
   m->center = m->first;
   return m;
 }

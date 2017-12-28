@@ -30,7 +30,9 @@ check: $$(patsubst $(TEST_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).test,$$(wild
 
 report: $(DOC_DIR)/project-report.pdf $(DOC_DIR)/commits.log;
 
-clean: clean-bin clean-api-doc clean-report;
+clean: clean-bin clean-api-doc clean-report clean-archive;
+
+archive: upem-c-morphing-adam-pacien.tar.gz;
 
 
 ##### BINARIES GENERATION
@@ -79,3 +81,15 @@ $(DOC_DIR)/commits.log:
 clean-report:
 	$(RM) -r $(DOC_DIR)/project-report.pdf
 	$(RM) -r $(DOC_DIR)/commits.log
+
+
+##### ARCHIVE
+.PRECIOUS: upem-c-morphing-adam-pacien.tar.gz
+.PHONY: clean-archive
+
+upem-c-morphing-adam-pacien.tar.gz: build check clean report
+	touch $@
+	tar --exclude-vcs --exclude=./$@ -zcvf ./$@ .
+
+clean-archive:
+	$(RM) upem-c-morphing-adam-pacien.tar.gz

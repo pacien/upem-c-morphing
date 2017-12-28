@@ -29,3 +29,10 @@ About: Project report
 > make report
 
 Generates the project report using Pandoc.
+
+
+About: Project archive
+
+> make archive
+
+Generates a compressed tarball containing the project sources and the compiled report as PDF.

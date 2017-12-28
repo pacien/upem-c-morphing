@@ -77,6 +77,7 @@ api-doc:
 
 clean-api-doc:
 	$(RM) -r $(DOC_DIR)/api/*
+	$(RM) -r $(DOC_DIR)/gen/Data
 
 
 ##### REPORT

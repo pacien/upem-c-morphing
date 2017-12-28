@@ -4,7 +4,7 @@
 
 
 static void test_group() {
-  Window window;
+  /*Window window;
   window_init(&window, 1000, 512, "Coucou");
   window_create(&window);
 

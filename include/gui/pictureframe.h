@@ -3,6 +3,7 @@
 
 #include <blender/canvas.h>
 #include <morpher/morphing.h>
+#include "component.h"
 
 /**
  * File: pictureframe.h
@@ -12,6 +13,7 @@
  * Type of functions needed to split CartesianMapping and keep only the CartesianVector needed, related to the type of PictureFrame involved
  */
 typedef CartesianVector (*CartesianMappingDivision)(const CartesianMapping *cartesianMapping);
+
 /**
  * Struct: PictureFrame
  * Represents a component to print pictures.
@@ -47,7 +49,8 @@ CartesianVector pictureframe_origin_split(const CartesianMapping *cartesianMappi
  */
 CartesianVector pictureframe_target_split(const CartesianMapping *cartesianMapping);
 
-void pictureframe_init(PictureFrame *pictureFrame, int width, int height, int x_pos, int y_pos, CartesianMappingDivision cartesianMappingDivision);
+void pictureframe_init(PictureFrame *pictureFrame, int width, int height, int x_pos, int y_pos,
+                       CartesianMappingDivision cartesianMappingDivision, Morphing *morphing, Canvas *canvas);
 
 void pictureframe_free(PictureFrame *pictureFrame);
 

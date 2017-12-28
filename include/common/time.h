@@ -3,6 +3,9 @@
 
 /**
  * File: time.h
+ * > Who can say where the road goes...
+ * > Where the day flows, only time...
+ * -- Enya
  */
 
 #include "geom.h"

@@ -57,5 +57,6 @@ int main(int argc, char **argv) {
   test_quadrilateral_flip_diagonal();
   test_quadrilateral_is_delaunay(m(0, 0), m(0, 3), m(3, 3), m(2, 1), false);
   test_quadrilateral_is_delaunay(m(0, 0), m(0, 3), m(3, 3), m(4, -1), true);
+  test_quadrilateral_is_delaunay(m(0, 0), m(0, 1), m(1, 1), m(1, 0), true);
   return 0;
 }

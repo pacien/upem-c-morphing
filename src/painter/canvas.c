@@ -7,6 +7,12 @@ Canvas *canvas_create(IntVector width, IntVector height) {
   return c;
 }
 
+Canvas *canvas_create_from_image(const char *fpath) {
+  Canvas *c = malloc_or_die(sizeof(Canvas));
+  c->mlv = MLV_load_image(fpath);
+  return c;
+}
+
 void canvas_destroy(Canvas *c) {
   MLV_free_image(c->mlv);
   free(c);

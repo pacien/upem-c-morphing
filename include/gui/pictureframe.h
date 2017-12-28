@@ -1,13 +1,14 @@
 #ifndef UPEM_MORPHING_PITUREFRAME
 #define UPEM_MORPHING_PITUREFRAME
 
-#include <blender/canvas.h>
 #include <morpher/morphing.h>
+#include <painter/canvas.h>
 #include "component.h"
-
 /**
  * File: pictureframe.h
  */
+
+CartesianVector savedPoint;
 /**
  * Type: CartesianMappingDivision
  * Type of functions needed to split CartesianMapping and keep only the CartesianVector needed, related to the type of PictureFrame involved
@@ -49,8 +50,24 @@ CartesianVector pictureframe_origin_split(const CartesianMapping *cartesianMappi
  */
 CartesianVector pictureframe_target_split(const CartesianMapping *cartesianMapping);
 
+bool pictureframe_is_selected(int x, int y, PictureFrame *pictureFrame);
+
+/**
+ * Function: pictureframe_conversion_to_origin
+ * Returns the relative coordinate on the picture corresponding to the input values
+ *
+ * Parameters:
+ *  x - value on x axis from the origin of the window to convert
+ *  y - value on y axis from the origin of the window to convert
+ *  *pictureFrame - pointer to the reference pictureframe that will give his relative coordinates
+ */
+CartesianVector pictureframe_conversion_to_origin(int x, int y, PictureFrame *pictureFrame);
+
+CartesianVector pictureframe_conversion_to_picture(int x, int y, PictureFrame *pictureFrame);
+
 void pictureframe_init(PictureFrame *pictureFrame, int width, int height, int x_pos, int y_pos,
-                       CartesianMappingDivision cartesianMappingDivision, Morphing *morphing, Canvas *canvas);
+                       CartesianMappingDivision cartesianMappingDivision, Morphing *morphing, Canvas *canvas,
+                       ClickHandler clickHandler);
 
 void pictureframe_free(PictureFrame *pictureFrame);
 
@@ -73,7 +90,7 @@ void pictureframe_draw_canvas(PictureFrame *pictureFrame);
 void pictureframe_print(Component *parameterSelf);
 
 /**
- * Function: pictureframe_click_handler
+ * Function: pictureframe_click_handler_origin
  * Adds a point on the coordinate of the picture that the mouse is pointing.
  *
  * Parameters:
@@ -81,7 +98,18 @@ void pictureframe_print(Component *parameterSelf);
  *  y_pos - coordinate on y axis of the mouse
  *  *parameterSelf - pointer that will be casted into a PictureFrame
  */
-void pictureframe_click_handler(int x_pos, int y_pos, Component *parameterSelf);
+void pictureframe_click_handler_origin(int x_pos, int y_pos, Component *parameterSelf);
+
+/**
+ * Function: pictureframe_click_handler_target
+ * Adds a point on the coordinate of the picture that the mouse is pointing.
+ *
+ * Parameters:
+ *  x_pos - coordinate on x axis of the mouse
+ *  y_pos - coordinate on y axis of the mouse
+ *  *parameterSelf - pointer that will be casted into a PictureFrame
+ */
+void pictureframe_click_handler_target(int x_pos, int y_pos, Component *parameterSelf);
 
 
 #endif

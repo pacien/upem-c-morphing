@@ -1,7 +1,10 @@
 #ifndef UPEM_C_COMPONENT_H
 #define UPEM_C_COMPONENT_H
+typedef enum {
+  WAITING_BUTTON, INSERT_ORIGIN, INSERT_TARGET,PRINTING
+} Mode;
 
-#include <stdbool.h>
+extern Mode mode;
 /**
  * File: component.h
  * Windows and components handling.
@@ -38,7 +41,6 @@ typedef void (*PrintMethod)(struct Component *);
 typedef struct Component {
   int width, height;
   int x_pos, y_pos;
-  bool activated;
   ClickHandler click_handler;
   PrintMethod print_method;
 } Component;

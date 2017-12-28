@@ -6,7 +6,6 @@
 #include <MLV/MLV_all.h>
 #include <gui/component.h>
 
-
 bool button_is_selected(int x, int y, Button *button) {
   assert(x >= 0);
   assert(y >= 0);
@@ -33,10 +32,21 @@ void button_click_test(int x, int y, Component *parameterSelf) {
   assert(y >= 0);
   assert(parameterSelf != NULL);
   Button *self = (Button *) parameterSelf;
-  if (button_is_selected(x, y, self) && self->component.activated) {
+  if (button_is_selected(x, y, self) && mode == WAITING_BUTTON) {
     printf("OK\n");
   }
 }
+
+void button_click_add_constraint(int x, int y, Component *parameterSelf){
+  assert(x >= 0);
+  assert(y >= 0);
+  assert(parameterSelf != NULL);
+  Button *self = (Button *) parameterSelf;
+  if (button_is_selected(x, y, self) && mode == WAITING_BUTTON) {
+    mode = INSERT_ORIGIN;
+  }
+}
+
 
 void
 button_init(Button *button, const char *text, int sizeInterligne, int x_pos, int y_pos, ClickHandler clickHandler) {
@@ -51,7 +61,6 @@ button_init(Button *button, const char *text, int sizeInterligne, int x_pos, int
   MLV_get_size_of_adapted_text_box(text, sizeInterligne, &button->component.width, &button->component.height);
   button->component.x_pos = x_pos;
   button->component.y_pos = y_pos;
-  button->component.activated = true;
   button->component.print_method = button_print;
   button->component.click_handler = clickHandler;
 }

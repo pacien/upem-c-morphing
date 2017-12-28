@@ -29,7 +29,7 @@ static void test_group() {
       group_click_handler(mouse_x,mouse_y,&(window.group_buttons->component));
     }
   }
-  /*MLV_wait_seconds(15);
+  MLV_wait_seconds(15);
   window_free(&window);*/
 }
 

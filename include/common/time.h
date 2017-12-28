@@ -5,6 +5,8 @@
  * File: time.h
  */
 
+#include "geom.h"
+
 /**
  * Constants: Time vectors
  *
@@ -18,6 +20,6 @@
  * Type: TimeVector
  * An abstract time vector.
  */
-typedef float TimeVector;
+typedef RealVector TimeVector;
 
 #endif

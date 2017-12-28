@@ -28,7 +28,7 @@ build: $$(patsubst $(SRC_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).o,$$(wildcard
 .SECONDEXPANSION:
 check: $$(patsubst $(TEST_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).test,$$(wildcard $(TEST_DIR)/**/*.c));
 
-report: $(DOC_DIR)/project-report.pdf;
+report: $(DOC_DIR)/project-report.pdf $(DOC_DIR)/commits.log;
 
 clean: clean-bin clean-api-doc clean-report;
 
@@ -66,12 +66,16 @@ clean-api-doc:
 
 
 ##### REPORT
-.PRECIOUS: $(DOC_DIR)/%.pdf
+.PRECIOUS: $(DOC_DIR)/%.pdf $(DOC_DIR)/commits.log
 .PHONY: clean-report
 
 .SECONDEXPANSION:
 $(DOC_DIR)/%.pdf: $$(patsubst $$(PERCENT).pdf,$$(PERCENT).md,$$@)
 	pandoc --template $(DOC_DIR)/report-template.tex --number-sections --listings --output $@ $<
 
+$(DOC_DIR)/commits.log:
+	git log > $@
+
 clean-report:
 	$(RM) -r $(DOC_DIR)/project-report.pdf
+	$(RM) -r $(DOC_DIR)/commits.log

@@ -15,6 +15,12 @@
 typedef int32_t IntVector;
 
 /**
+ * Type: RealVector
+ * An abstract 1-D real vector.
+ */
+typedef double RealVector;
+
+/**
  * Struct: CartesianVector
  * An abstract 2-D vector in cartesian coordinates.
  *
@@ -25,6 +31,19 @@ typedef int32_t IntVector;
 typedef struct {
   IntVector x, y;
 } CartesianVector;
+
+/**
+ * Struct: BarycentricVector
+ * An abstract barycentric coordinate tuple relative to a triangle.
+ * The third barycentric coordinate is deduced from the first two ones.
+ *
+ * Fields:
+ *   a - the first barycentric coordinate
+ *   b - the second barycentric coordinate
+ */
+typedef struct {
+  RealVector a, b;
+} BarycentricVector;
 
 /**
  * Struct: CartesianMapping
@@ -38,6 +57,16 @@ typedef struct {
   CartesianVector origin, target;
 } CartesianMapping;
 
+/**
+ * Struct: Triangle
+ * Represents a simple triangle with three vertices.
+ *
+ * Fields:
+ *   v[] - array of vertices
+ */
+typedef struct {
+  CartesianVector v[3];
+} Triangle;
 
 /**
  * Function: m
@@ -66,6 +95,19 @@ CartesianMapping m(int x, int y);
 CartesianVector v(int x, int y);
 
 /**
+ * Function: b
+ * Shorthand for a barycentric vector.
+ *
+ * Parameters:
+ *   a - the a-coordinate
+ *   b - the b-coordinate
+ *
+ * Returns:
+ *   A barycentric vector
+ */
+BarycentricVector b(double a, double b);
+
+/**
  * Function: mappings_equals
  * Compares two cartesian mappings.
  *
@@ -92,17 +134,54 @@ bool mappings_equals(CartesianMapping m1, CartesianMapping m2);
 bool vector_equals(CartesianVector v1, CartesianVector v2);
 
 /**
- * Function: triangle_area
- * Computes the area of a triangle.
+ * Function: barycentric_vector_equals
+ * Compares two barycentric vectors.
  *
  * Parameters:
- *   v1 - first vertex
- *   v2 - second vertex
- *   v3 - third vertex
+ *   v1 - the first vector
+ *   v2 - the second vector
  *
  * Returns:
- *   The area of the triangle spawned by the three supplied vertices
+ *   T(v1 is equal to v2)
  */
-IntVector triangle_area(CartesianVector v1, CartesianVector v2, CartesianVector v3);
+bool barycentric_vector_equals(BarycentricVector b1, BarycentricVector b2);
+
+/**
+ * Function: square_area
+ * Computes the area of a square spawned by three positively oriented vertices.
+ *
+ * Parameters:
+ *   vi - vertices
+ *
+ * Returns:
+ *   The area of the square
+ */
+IntVector square_area(CartesianVector v1, CartesianVector v2, CartesianVector v3);
+
+/**
+ * Function: cartesian_to_barycentric
+ * Computes and returns the barycentric coordinates of a given point in the given reference triangle.
+ *
+ * Parameters:
+ *   t - reference triangle
+ *   p - the vector to convert
+ *
+ * Returns:
+ *   The barycentric coordinates vector
+ */
+BarycentricVector cartesian_to_barycentric(Triangle t, CartesianVector p);
+
+/**
+ * Function: barycentric_to_cartesian
+ * Computes and returns the cartesian coordinates of a given point in the given reference triangle.
+ *
+ * Parameters:
+ *   t - reference triangle
+ *   p - the vector to convert
+ *
+ * Returns:
+ *   The cartesian coordinate vector
+ */
+CartesianVector barycentric_to_cartesian(Triangle t, BarycentricVector p);
 
 #endif

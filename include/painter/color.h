@@ -10,6 +10,7 @@
 
 #include <MLV/MLV_color.h>
 #include <stdbool.h>
+#include "common/time.h"
 
 /**
  * Type: ColorComponent
@@ -24,7 +25,7 @@ typedef uint8_t ColorComponent;
  */
 typedef union {
   struct {
-    ColorComponent r, g, b, a;
+    ColorComponent a, b, g, r;
   } rgba;
 
   MLV_Color mlv;
@@ -42,5 +43,19 @@ typedef union {
  *   T(c1 is the same color as c2)
  */
 bool color_equals(Color c1, Color c2);
+
+/**
+ * Function: color_blend
+ * Blends two colors.
+ *
+ * Parameters:
+ *   origin   - the first color
+ *   target   - the second color
+ *   distance - the distance from the first color
+ *
+ * Returns:
+ *   The blended color
+ */
+Color color_blend(Color origin, Color target, TimeVector distance);
 
 #endif

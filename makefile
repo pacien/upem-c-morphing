@@ -28,9 +28,11 @@ build: $$(patsubst $(SRC_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).o,$$(wildcard
 .SECONDEXPANSION:
 check: $$(patsubst $(TEST_DIR)/$$(PERCENT).c,$(BIN_DIR)/$$(PERCENT).test,$$(wildcard $(TEST_DIR)/**/*.c));
 
-report: $(DOC_DIR)/project-report.pdf;
+report: $(DOC_DIR)/project-report.pdf $(DOC_DIR)/commits.log;
 
-clean: clean-bin clean-api-doc clean-report;
+clean: clean-bin clean-api-doc clean-report clean-archive;
+
+archive: upem-c-morphing-adam-pacien.tar.gz;
 
 
 ##### BINARIES GENERATION
@@ -66,12 +68,28 @@ clean-api-doc:
 
 
 ##### REPORT
-.PRECIOUS: $(DOC_DIR)/%.pdf
+.PRECIOUS: $(DOC_DIR)/%.pdf $(DOC_DIR)/commits.log
 .PHONY: clean-report
 
 .SECONDEXPANSION:
 $(DOC_DIR)/%.pdf: $$(patsubst $$(PERCENT).pdf,$$(PERCENT).md,$$@)
 	pandoc --template $(DOC_DIR)/report-template.tex --number-sections --listings --output $@ $<
 
+$(DOC_DIR)/commits.log:
+	git log > $@
+
 clean-report:
 	$(RM) -r $(DOC_DIR)/project-report.pdf
+	$(RM) -r $(DOC_DIR)/commits.log
+
+
+##### ARCHIVE
+.PRECIOUS: upem-c-morphing-adam-pacien.tar.gz
+.PHONY: clean-archive
+
+upem-c-morphing-adam-pacien.tar.gz: build check clean report
+	touch $@
+	tar --exclude-vcs --exclude=./$@ -zcvf ./$@ .
+
+clean-archive:
+	$(RM) upem-c-morphing-adam-pacien.tar.gz

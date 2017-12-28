@@ -3,7 +3,12 @@
 
 /**
  * File: time.h
+ * > Who can say where the road goes...
+ * > Where the day flows, only time...
+ * -- Enya
  */
+
+#include "geom.h"
 
 /**
  * Constants: Time vectors
@@ -18,6 +23,6 @@
  * Type: TimeVector
  * An abstract time vector.
  */
-typedef float TimeVector;
+typedef RealVector TimeVector;
 
 #endif

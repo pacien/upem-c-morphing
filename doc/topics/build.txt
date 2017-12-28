@@ -5,14 +5,14 @@ List of the make targets. The global `make all` and `make clean` are also define
 
 About: Compiling
 
-> make source
+> make build
 
 Compiles all modules.
 
 
 About: Automatic tests
 
-> make test
+> make check
 
 Compiles and runs all unit tests.
 

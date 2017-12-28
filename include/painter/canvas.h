@@ -25,8 +25,23 @@ typedef struct {
  * Parameters:
  *   width  - the width in pixels
  *   height - the height in pixels
+ *
+ * Returns:
+ *   The initialised canvas
  */
 Canvas *canvas_create(IntVector width, IntVector height);
+
+/**
+ * Function: canvas_create_from_image
+ * Initialises a canvas with an image loaded from the given path.
+ *
+ * Parameters:
+ *   *fpath - path to the base image file
+ *
+ * Returns:
+ *   The initialised canvas
+ */
+Canvas *canvas_create_from_image(const char *fpath);
 
 /**
  * Function: canvas_destroy

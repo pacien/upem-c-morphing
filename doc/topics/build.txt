@@ -5,9 +5,13 @@ List of the make targets. The global `make all` and `make clean` are also define
 
 About: Compiling
 
-> make build
+> make objects
 
 Compiles all modules.
+
+> make build
+
+Compiles the application executable file.
 
 
 About: Automatic tests
@@ -28,7 +32,7 @@ About: Project report
 
 > make report
 
-Generates the project report using Pandoc.
+Generates the project report using Pandoc and generate a commit log file.
 
 
 About: Project archive

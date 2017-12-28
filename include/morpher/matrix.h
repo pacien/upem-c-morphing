@@ -3,10 +3,8 @@
 
 /**
  * File: matrix.h
- * Determinant operations.
- *
- * See also:
- *   The film
+ * > The matrix is a system Neo, that system is our enemy.
+ * -- Morpheus
  */
 
 #include "common/geom.h"

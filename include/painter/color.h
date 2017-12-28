@@ -3,9 +3,8 @@
 
 /**
  * File: color.h
- *
- * See also:
- *   A rainbow
+ * > Coming, colors in the air! Oh, everywhere!
+ * -- The Rolling Stones
  */
 
 #include <MLV/MLV_color.h>

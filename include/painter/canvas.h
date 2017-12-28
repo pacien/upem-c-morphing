@@ -3,8 +3,6 @@
 
 /**
  * File: canvas.h
- * > Everyday is a good day when you paint.
- * -- Bob Ross
  */
 
 #include <MLV/MLV_image.h>

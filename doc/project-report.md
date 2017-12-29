@@ -25,7 +25,7 @@ Build-time and run-time dependencies of this program are licensed under their ow
 This report has been generated using the [Eisvogel template](https://github.com/Wandmalfarbe/pandoc-latex-template),
 licensed under the BSD 3-Clause License.
 
----
+\newpage
 
 # Compilation and usage
 
@@ -43,15 +43,28 @@ The whole build process has been tested and is known to work on Debian 9.
 ## Running the program
 
 The executable binary file resulting from the compilation of the project accepts two arguments: the base and the target
-images. Accepted file formats are ICO, CUR, BMP, PNM, XPM, LBM, PCX, GIF, JPEG, PNG, TGA, TIFF, and XV.
+images. Accepted file formats are ICO, CUR, BMP, PNM, XPM, LBM, PCX, GIF, JPEG, PNG, TGA, TIFF, and XV. Both base and
+target images must have the same dimension.
 
-The graphical interface of the application let the user define constraint points on the two images, as well as define
+The graphical interface of the application lets the user define constraint points on the two images, as well as define
 parameters such as the number of desired frames and visualise the morphing animation.
 
-The program has been tested on Debian 9. Known bugs in the MLV library may prevent it from running correctly on other
-Linux distributions and operating systems.
+The program has been tested on Debian 9 and is known to run correctly on this platform.
 
----
+## Additional features
+
+The program supports pairs of pictures of variable sizes.
+
+It also offers the possibility to save morphing animations in GIF format.
+
+## Bugs
+
+Incorrect Delaunay triangulations may be generated with large images of 10k² pixels or more, due to possible 64-bits
+integer overflows during the computation of such triangulations.
+
+Known bugs in the MLV library may prevent the graphical user interface from working correctly on Windows and MacOS.
+
+\newpage
 
 # Implementation details
 
@@ -77,23 +90,57 @@ Assertions have also been used within the module implementations, enforcing pre-
 
 ## Modules
 
-The application has been broken down into several sub-modules, each of which responsible for a well defined and
+The application has been broken down into several sub-modules, each of which responsible for a well-defined and
 semantically related set of tasks, with little or no coupling between each of those parts.
 
 Following an object-oriented-like paradigm, APIs of said modules are centered around struct data type.
 Furthermore, the number of exposed functions has been kept minimal to ensure the containment of the implementations.
 
+The development of the underlying logic and the graphical interface has been delegated respectively to Pacien and Adam.
+
+\newpage
+
 ### Common
+
+The common module contains utility functions for memory management and error handling, as well as common generic
+geometric and time type definitions meant to be used by the other modules, while not being semantically tied to them.
 
 ### Morpher
 
+The morpher module holds the type definitions and functions related to a morphing, that is an abstract set of mapping
+constraints represented as a triangulation of a rectangle.
+
+The underlying triangulation maintains the Delaunay criteria and the positive orientation of the triangle vertices in
+the decreasing-y plane throughout the addition of new constraint point mappings.
+
+A neighbourhood graph and a linked list of those subsections are also kept up to date, respectively allowing a faster
+triangle lookup from arbitrarily given coordinates and a simple way of traversing all the triangles.
+
 ### Painter
+
+The painter module provides functions to apply a previously constructed morphing to a base and a target image,
+generating a morphed image as the output.
+
+A per-triangle rasterisation algorithm has been implemented instead of the suggested per-pixel triangle lookup for
+performance reasons, as the whole process was meant to run in a single thread on the CPU, not benefiting the massive
+parallelisation possibility that a GPU would have offered.
+
+The colour of each pixel resulting from the rasterisation is interpolated taking care of the compression applied to the
+RBGa vectors from the two base images: each component is square-rooted back to its raw value before blending.
 
 ### GUI
 
-## Additional features
+TODO: modular component-based architecture, wrapping libMLV low level functions\
+      based on delegated click handlers and painting functions\
+      computing intermediate morphing between each frame, combined with a times, thus not using MLV_Animation
 
----
+\newpage
+
+## Miscellaneous notes
+
+The animation export feature relies on the MLV library for exporting the frames and ImageMagick for generating the final
+animated GIF. This utility library is called as an external command line tool as its direct use as a C library was not
+permitted.
 
 # References
 

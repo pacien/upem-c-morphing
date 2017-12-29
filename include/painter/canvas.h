@@ -26,7 +26,7 @@ typedef struct {
  *   height - the height in pixels
  *
  * Returns:
- *   The initialised canvas
+ *   The initialised canvas, dynamically allocated
  */
 Canvas *canvas_create(IntVector width, IntVector height);
 
@@ -38,7 +38,7 @@ Canvas *canvas_create(IntVector width, IntVector height);
  *   *fpath - path to the base image file
  *
  * Returns:
- *   The initialised canvas
+ *   The initialised canvas, dynamically allocated
  */
 Canvas *canvas_create_from_image(const char *fpath);
 

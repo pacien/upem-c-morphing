@@ -29,12 +29,10 @@ typedef struct _TriangleMap {
  * Creates a TriangleMap, instantiating it on the heap.
  *
  * Parameters:
- *   vertex1 - first vertex
- *   vertex2 - second vertex
- *   vertex3 - third vertex
+ *   vi - the vertices, positively oriented
  *
  * Returns:
- *   A pointer to the newly created triangle
+ *   A pointer to the newly created triangle, dynamically allocated
  */
 TriangleMap *trianglemap_create(CartesianMapping v1, CartesianMapping v2, CartesianMapping v3);
 
@@ -87,9 +85,7 @@ int trianglemap_find_common_edge(TriangleMap *t, TriangleMap *neighbor);
  *
  * Parameters:
  *   *t    - the triangle to modify
- *   *n1   - first neighbour
- *   *n2   - second neighbour
- *   *n3   - third neighbour
+ *   *ni   - the neighbours
  *   *next - linear neighbour
  */
 void trianglemap_set_neighbors(TriangleMap *t, TriangleMap *n1, TriangleMap *n2, TriangleMap *n3, TriangleMap *next);

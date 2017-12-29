@@ -26,17 +26,20 @@ typedef struct {
 } Morphing;
 
 /**
- * Function: morphing_init
+ * Function: morphing_create
  * Initialises a morphing.
  *
  * Parameters:
  *   width  - coordinate matrix width in pixels
  *   height - coordinate matrix height in pixels
+ *
+ * Returns:
+ *   The created morphing, dynamically allocated
  */
 Morphing *morphing_create(IntVector width, IntVector height);
 
 /**
- * Function: morphing_free
+ * Function: morphing_destroy
  * Frees any resources allocated to a morphing.
  *
  * Parameters:

@@ -32,28 +32,28 @@ typedef union {
 
 /**
  * Function: color_equals
- * Compares the supplied colors.
+ * Compares the supplied colours.
  *
  * Parameters:
- *   c1 - the first color
- *   c2 - the second color
+ *   c1 - the first colour
+ *   c2 - the second colour
  *
  * Returns:
- *   T(c1 is the same color as c2)
+ *   T(c1 is the same colour as c2)
  */
 bool color_equals(Color c1, Color c2);
 
 /**
  * Function: color_blend
- * Blends two colors.
+ * Blends two colours.
  *
  * Parameters:
- *   origin   - the first color
- *   target   - the second color
- *   distance - the distance from the first color
+ *   origin   - the first colour
+ *   target   - the second colour
+ *   distance - the distance from the first colour
  *
  * Returns:
- *   The blended color
+ *   The blended colour
  */
 Color color_blend(Color origin, Color target, TimeVector distance);
 

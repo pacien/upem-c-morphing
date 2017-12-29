@@ -13,7 +13,7 @@
 #define OUT_OF_MEMORY_ERROR "Out of memory"
 
 /**
- * Function: rage quit
+ * Function: rage_quit
  * Logs the supplied error message to stderr before exiting the program with an error status code.
  *
  * Parameters:

@@ -12,7 +12,7 @@
  * Type: IntVector
  * An abstract 1-D vector.
  */
-typedef int32_t IntVector;
+typedef int64_t IntVector;
 
 /**
  * Type: RealVector

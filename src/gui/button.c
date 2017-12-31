@@ -32,19 +32,86 @@ void button_click_test(int x, int y, Component *parameterSelf) {
   assert(y >= 0);
   assert(parameterSelf != NULL);
   Button *self = (Button *) parameterSelf;
-  if (button_is_selected(x, y, self) && mode == WAITING_BUTTON) {
-    printf("OK\n");
+  if (button_is_selected(x, y, self) && (mode == WAITING_BUTTON_SHOW || mode == WAITING_BUTTON_HIDE)) {
   }
 }
 
-void button_click_add_constraint(int x, int y, Component *parameterSelf){
+void button_click_add_constraint(int x, int y, Component *parameterSelf) {
   assert(x >= 0);
   assert(y >= 0);
   assert(parameterSelf != NULL);
   Button *self = (Button *) parameterSelf;
-  if (button_is_selected(x, y, self) && mode == WAITING_BUTTON) {
+  if (button_is_selected(x, y, self) && (mode == WAITING_BUTTON_SHOW || mode == WAITING_BUTTON_HIDE)) {
     mode = INSERT_ORIGIN;
   }
+}
+
+void button_click_show_hide(int x, int y, Component *parameterSelf) {
+  assert(x >= 0);
+  assert(y >= 0);
+  assert(parameterSelf != NULL);
+  Button *self = (Button *) parameterSelf;
+  if (button_is_selected(x, y, self)) {
+    if (mode == WAITING_BUTTON_SHOW) {
+      mode = WAITING_BUTTON_HIDE;
+    } else if (mode == WAITING_BUTTON_HIDE) {
+      mode = WAITING_BUTTON_SHOW;
+    }
+  }
+}
+
+void button_click_exit(int x, int y, Component *parameterSelf) {
+  assert(x >= 0);
+  assert(y >= 0);
+  assert(parameterSelf != NULL);
+  Button *self = (Button *) parameterSelf;
+  if (button_is_selected(x, y, self) && (mode == WAITING_BUTTON_SHOW || mode == WAITING_BUTTON_HIDE)) {
+    mode = EXITING;
+  }
+}
+
+void button_click_less_frame(int x, int y, Component *parameterSelf) {
+  assert(x >= 0);
+  assert(y >= 0);
+  assert(parameterSelf != NULL);
+  Button *self = (Button *) parameterSelf;
+  if (button_is_selected(x, y, self) && (mode == WAITING_BUTTON_SHOW || mode == WAITING_BUTTON_HIDE)) {
+    if (frame > 2) {
+      frame = frame / 2;
+      sprintf(labelFrame,"%03d frames", frame);
+      mode = PRINTING_BUTTONS;
+    }
+  }
+}
+
+void button_click_more_frame(int x, int y, Component *parameterSelf) {
+  assert(x >= 0);
+  assert(y >= 0);
+  assert(parameterSelf != NULL);
+  Button *self = (Button *) parameterSelf;
+  if (button_is_selected(x, y, self) && (mode == WAITING_BUTTON_SHOW || mode == WAITING_BUTTON_HIDE)) {
+    if (frame < 256) {
+      frame = frame * 2;
+      sprintf(labelFrame,"%03d frames", frame);
+      mode = PRINTING_BUTTONS;
+    }
+  }
+}
+
+void button_click_rendering(int x,int y, Component *parameterSelf) {
+  assert(x >= 0);
+  assert(y >= 0);
+  assert(parameterSelf != NULL);
+  Button *self = (Button *) parameterSelf;
+  if (button_is_selected(x, y, self) && (mode == WAITING_BUTTON_SHOW || mode == WAITING_BUTTON_HIDE)) {
+    mode = RENDERING;
+  }
+}
+
+void button_click_none(int x, int y, Component *parameterSelf) {
+  assert(x >= 0);
+  assert(y >= 0);
+  assert(parameterSelf != NULL);
 }
 
 

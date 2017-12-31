@@ -1,10 +1,12 @@
 #ifndef UPEM_C_COMPONENT_H
 #define UPEM_C_COMPONENT_H
 typedef enum {
-  WAITING_BUTTON, INSERT_ORIGIN, INSERT_TARGET,PRINTING
+  WAITING_BUTTON_SHOW, WAITING_BUTTON_HIDE, INSERT_ORIGIN, INSERT_TARGET, PRINTING, EXITING, PRINTING_BUTTONS, RENDERING
 } Mode;
 
 extern Mode mode;
+extern int frame;
+extern char labelFrame[20];
 /**
  * File: component.h
  * Windows and components handling.

@@ -58,6 +58,20 @@ void button_print(Component *parameterSelf);
 void button_click_test(int x, int y, Component *parameterSelf);
 
 void button_click_add_constraint(int x, int y, Component *parameterSelf);
+
+void button_click_show_hide(int x, int y, Component *parameterSelf);
+
+void button_click_exit(int x, int y, Component *parameterSelf);
+
+void button_click_none(int x, int y, Component *parameterSelf);
+
+void button_click_more_frame(int x, int y, Component *parameterSelf);
+
+void button_click_less_frame(int x, int y, Component *parameterSelf);
+
+void button_click_rendering(int x, int y, Component *parameterSelf);
+
+
 /**
  * Function: button_is_selected
  * Checks if the button is selected or not.

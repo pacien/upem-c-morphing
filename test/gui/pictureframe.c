@@ -83,12 +83,14 @@ static void test_pictureframe() {
         mode = WAITING_BUTTON_SHOW;
         break;
       case RENDERING:
-        for (i = 0; i < frame ; ++i) {
-          pictureFrame1.canvas = rasterize(canvasSrc,canvasTarget,morphing,(TimeVector)(TIME_UNIT/frame));
+        for (i = 1; i <= frame ; ++i) {
+          pictureFrame1.canvas = rasterize(canvasSrc,canvasTarget,morphing,(TimeVector)(i/(float)frame));
           pictureframe_draw_canvas(&pictureFrame1);
           MLV_actualise_window();
-          printf("Rendering\n");
+          MLV_wait_seconds(1);
         }
+        mode = EXITING;
+        MLV_wait_seconds(15);
         break;
       default:
         break;

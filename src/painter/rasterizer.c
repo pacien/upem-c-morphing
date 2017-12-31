@@ -79,7 +79,7 @@ Canvas *rasterize(Canvas *source, Canvas *target, Morphing *m, TimeVector frame)
   assert(vector_equals(canvas_get_dim(source), m->dim) && vector_equals(canvas_get_dim(target), m->dim));
   assert(frame >= TIME_ORIGIN && frame <= TIME_UNIT);
 
-  rctx = (RasterizationContext) {canvas_create(m->dim.y, m->dim.x), source, target, frame};
+  rctx = (RasterizationContext) {canvas_create(m->dim.x, m->dim.y), source, target, frame};
   for (t = m->first; t != NULL; t = t->next) draw_triangle(t, &rctx);
 
   return rctx.result;

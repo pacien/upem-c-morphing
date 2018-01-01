@@ -3,6 +3,10 @@
 #include <gui/button.h>
 #include <gui/pictureframe.h>
 #include <gui/group.h>
+#include <MLV/MLV_keyboard.h>
+#include <MLV/MLV_all.h>
+#include <caca_conio.h>
+#include <painter/rasterizer.h>
 #include "common/mem.h"
 #include "string.h"
 #include "assert.h"
@@ -57,4 +61,33 @@ void window_print_pictureframes(Window *window) {
   assert(window != NULL);
   window->group_pictureframe->component.print_method(&(window->group_pictureframe->component));
   MLV_actualise_window();
+}
+
+void window_wait_keyboard_or_mouse(MLV_Keyboard_button *keyboardButton, MLV_Keyboard_modifier *keyboardModifier,
+                                   int *unicode, int *mouse_x, int *mouse_y) {
+  *mouse_x = -1;
+  *mouse_y = -1;
+  *keyboardButton = MLV_KEYBOARD_NONE;
+  MLV_wait_keyboard_or_mouse(keyboardButton, keyboardModifier, unicode, mouse_x, mouse_y);
+}
+
+void window_click_keyboard_handler(Window *window, MLV_Keyboard_button *keyboardButton,
+                                   MLV_Keyboard_modifier *keyboardModifier,
+                                   int *unicode, int *mouse_x, int *mouse_y) {
+  window_wait_keyboard_or_mouse(keyboardButton,keyboardModifier,unicode,mouse_x,mouse_y);
+  group_click_handler(*mouse_x, *mouse_y, &(window->group_buttons->component));
+  group_click_handler(*mouse_x, *mouse_y, &(window->group_pictureframe->component));
+}
+
+void window_rendering(Window *window,PictureFrame *pictureFrame1,Canvas *canvasSrc, Canvas *canvasTarget, Morphing *morphing){
+  int i;
+  window_print_pictureframes(window);
+  for (i = 1; i <= frame; ++i) {
+    pictureFrame1->canvas = rasterize(canvasSrc, canvasTarget, morphing, (TimeVector) (i / (float) frame));
+    pictureframe_draw_canvas(pictureFrame1);
+    MLV_actualise_window();
+    canvas_destroy(pictureFrame1->canvas);
+  }
+  mode = EXITING;
+  MLV_wait_seconds(15);
 }

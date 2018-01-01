@@ -9,6 +9,7 @@
  *  The famous OS
  */
 
+#include <MLV/MLV_keyboard.h>
 #include "group.h"
 #include "component.h"
 #include "button.h"
@@ -99,5 +100,10 @@ void window_print_buttons(Window *window);
  *  *window - pointer to the input window
  */
 void window_print_pictureframes(Window *window);
+
+void window_click_keyboard_handler(Window *window, MLV_Keyboard_button *keyboardButton,
+                                   MLV_Keyboard_modifier *keyboardModifier,
+                                   int *unicode, int *mouse_x, int *mouse_y);
+void window_rendering(Window *window,PictureFrame *pictureFrame1,Canvas *canvasSrc, Canvas *canvasTarget, Morphing *morphing);
 
 #endif

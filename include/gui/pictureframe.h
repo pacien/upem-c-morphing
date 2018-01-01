@@ -61,15 +61,13 @@ bool pictureframe_is_selected(int x, int y, PictureFrame *pictureFrame);
  *  y - value on y axis from the origin of the window to convert
  *  *pictureFrame - pointer to the reference pictureframe that will give his relative coordinates
  */
-CartesianVector pictureframe_conversion_to_origin(int x, int y, PictureFrame *pictureFrame);
+CartesianVector pictureframe_conversion_to_pic(int x, int y, PictureFrame *pictureFrame);
 
-CartesianVector pictureframe_conversion_to_picture(int x, int y, PictureFrame *pictureFrame);
+CartesianVector pictureframe_conversion_to_origin(int x, int y, PictureFrame *pictureFrame);
 
 void pictureframe_init(PictureFrame *pictureFrame, int width, int height, int x_pos, int y_pos,
                        CartesianMappingDivision cartesianMappingDivision, Morphing *morphing, Canvas *canvas,
                        ClickHandler clickHandler);
-
-void pictureframe_free(PictureFrame *pictureFrame);
 
 /**
  * Function: pictureframe_draw_canvas

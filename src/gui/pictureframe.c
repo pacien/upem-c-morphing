@@ -17,7 +17,7 @@ void pictureframe_draw_canvas(PictureFrame *pictureFrame){
 void pictureframe_print(Component *parameterSelf) {
   PictureFrame *self = (PictureFrame *) parameterSelf;
   pictureframe_draw_canvas(self);
-  if (mode != WAITING_BUTTON_HIDE) {
+  if (mode != WAITING_BUTTON_HIDE && mode != RENDERING) {
     TriangleMap *p = self->morphing->first;
     CartesianVector p1;
     CartesianVector p2;
@@ -30,9 +30,9 @@ void pictureframe_print(Component *parameterSelf) {
       p2 = self->cartesianMappingDivision(&(p->vertices[1]));
       p3 = self->cartesianMappingDivision(&(p->vertices[2]));
 
-      pointToPrint1 = pictureframe_conversion_to_picture(p1.x, p1.y, self);
-      pointToPrint2 = pictureframe_conversion_to_picture(p2.x, p2.y, self);
-      pointToPrint3 = pictureframe_conversion_to_picture(p3.x, p3.y, self);
+      pointToPrint1 = pictureframe_conversion_to_origin(p1.x, p1.y, self);
+      pointToPrint2 = pictureframe_conversion_to_origin(p2.x, p2.y, self);
+      pointToPrint3 = pictureframe_conversion_to_origin(p3.x, p3.y, self);
 
       MLV_draw_filled_circle(pointToPrint1.x, pointToPrint1.y, 2, MLV_COLOR_RED);
       MLV_draw_filled_circle(pointToPrint2.x, pointToPrint2.y, 2, MLV_COLOR_RED);
@@ -47,8 +47,6 @@ void pictureframe_print(Component *parameterSelf) {
 }
 
 bool pictureframe_is_selected(int x, int y, PictureFrame *pictureFrame) {
-  assert(x >= 0);
-  assert(y >= 0);
   assert(pictureFrame != NULL);
   int x1 = pictureFrame->component.x_pos;
   int y1 = pictureFrame->component.y_pos;
@@ -60,14 +58,14 @@ bool pictureframe_is_selected(int x, int y, PictureFrame *pictureFrame) {
   return false;
 }
 
-CartesianVector pictureframe_conversion_to_origin(int x, int y, PictureFrame *pictureFrame) {
+CartesianVector pictureframe_conversion_to_pic(int x, int y, PictureFrame *pictureFrame) {
   CartesianVector vector;
   vector.x = x - pictureFrame->component.x_pos;
   vector.y = y - pictureFrame->component.y_pos;
   return vector;
 }
 
-CartesianVector pictureframe_conversion_to_picture(int x, int y, PictureFrame *pictureFrame) {
+CartesianVector pictureframe_conversion_to_origin(int x, int y, PictureFrame *pictureFrame) {
   CartesianVector vector;
   vector.x = x + pictureFrame->component.x_pos;
   vector.y = y + pictureFrame->component.y_pos;
@@ -77,7 +75,7 @@ CartesianVector pictureframe_conversion_to_picture(int x, int y, PictureFrame *p
 void pictureframe_click_handler_origin(int x_pos, int y_pos, Component *parameterSelf) {
   PictureFrame *self = (PictureFrame *) parameterSelf;
   if (pictureframe_is_selected(x_pos, y_pos, self) && mode == INSERT_ORIGIN) {
-    CartesianVector vector = pictureframe_conversion_to_origin(x_pos, y_pos, self);
+    CartesianVector vector = pictureframe_conversion_to_pic(x_pos, y_pos, self);
     MLV_draw_filled_circle(x_pos, y_pos, 2, MLV_COLOR_BLUE);
     savedPoint = vector;
     MLV_actualise_window();
@@ -88,7 +86,7 @@ void pictureframe_click_handler_origin(int x_pos, int y_pos, Component *paramete
 void pictureframe_click_handler_target(int x_pos, int y_pos, Component *parameterSelf) {
   PictureFrame *self = (PictureFrame *) parameterSelf;
   if (pictureframe_is_selected(x_pos, y_pos, self) && mode == INSERT_TARGET) {
-    CartesianVector vector = pictureframe_conversion_to_origin(x_pos, y_pos, self);
+    CartesianVector vector = pictureframe_conversion_to_pic(x_pos, y_pos, self);
     morphing_add_constraint(self->morphing, savedPoint, vector);
     mode = PRINTING;
   }

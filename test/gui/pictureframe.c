@@ -28,8 +28,6 @@ static void test_pictureframe() {
   Canvas *canvasSrc = canvas_create_from_image("/home/adam/Images/goku.png");
   Canvas *canvasTarget = canvas_create_from_image("/home/adam/Images/marty.jpg");
 
-  int i;
-
   sprintf(labelFrame, "%03d frames", frame);
   button_init(&button1, "Add constraint point", 10, 0, 0, button_click_add_constraint);
   button_init(&button2, "Show/Hide", 10, 0, 0, button_click_show_hide);
@@ -59,13 +57,14 @@ static void test_pictureframe() {
 
   window_print_buttons(&window);
   window_print_pictureframes(&window);
+
+  MLV_Keyboard_button keyboardButton;
+  MLV_Keyboard_modifier keyboardModifier;
+  int unicode;
   int mouse_x;
   int mouse_y;
   while (mode != EXITING) {
-    MLV_wait_mouse(&mouse_x, &mouse_y);
-    group_click_handler(mouse_x, mouse_y, &(window.group_buttons->component));
-    group_click_handler(mouse_x, mouse_y, &(window.group_pictureframe->component));
-
+    window_click_keyboard_handler(&window, &keyboardButton, &keyboardModifier, &unicode, &mouse_x, &mouse_y);
     switch (mode) {
       case PRINTING:
         window_print_pictureframes(&window);
@@ -83,14 +82,13 @@ static void test_pictureframe() {
         mode = WAITING_BUTTON_SHOW;
         break;
       case RENDERING:
-        for (i = 1; i <= frame ; ++i) {
-          pictureFrame1.canvas = rasterize(canvasSrc,canvasTarget,morphing,(TimeVector)(i/(float)frame));
-          pictureframe_draw_canvas(&pictureFrame1);
-          MLV_actualise_window();
-          MLV_wait_seconds(1);
+        window_rendering(&window,&pictureFrame1,canvasSrc,canvasTarget,morphing);
+        break;
+      case INSERT_TARGET:
+        if (keyboardButton == MLV_KEYBOARD_ESCAPE) {
+          window_print_pictureframes(&window);
+          mode = WAITING_BUTTON_SHOW;
         }
-        mode = EXITING;
-        MLV_wait_seconds(15);
         break;
       default:
         break;

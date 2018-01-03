@@ -6,7 +6,7 @@ static void test_window() {
   window_init(&window, 1000, 512, "Coucou");
   window_create(&window);
   MLV_wait_seconds(150);
-  window_free(&window);*/
+  window_destroy(&window);*/
 }
 
 int main() {

@@ -21,7 +21,7 @@ static void test_button() {
     }
   }*/
   /*MLV_wait_seconds(10);
-  window_free(&window);*/
+  window_destroy(&window);*/
 }
 
 int main() {

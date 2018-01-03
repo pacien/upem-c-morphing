@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <gui/gui.h>
-#include <MLV/MLV_path.h>
+#include "gui/gui.h"
+#include "MLV/MLV_path.h"
 
 int main(int argc, char **argv) {
   if (argc < 3) {
@@ -16,10 +16,10 @@ int main(int argc, char **argv) {
     fprintf(stderr, "One path is incorrect\n");
     exit(-3);
   };
-  GUI *gui = gui_init(argv[1], argv[2]);
+  GUI *gui = gui_create(argv[1], argv[2]);
   while (mode != EXITING) {
     gui_handle_event(gui);
   }
-  gui_free(gui);
+  gui_destroy(gui);
   return 0;
 }

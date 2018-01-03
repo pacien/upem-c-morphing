@@ -1,22 +1,16 @@
 #include <stdlib.h>
-#include <gui/window.h>
-#include <gui/button.h>
-#include <gui/pictureframe.h>
-#include <gui/group.h>
-#include <MLV/MLV_keyboard.h>
-#include <MLV/MLV_all.h>
-#include <caca_conio.h>
-#include <painter/rasterizer.h>
+#include <assert.h>
+#include "gui/window.h"
+#include "MLV/MLV_all.h"
+#include "painter/rasterizer.h"
 #include "common/mem.h"
-#include "string.h"
-#include "assert.h"
-#include "MLV/MLV_window.h"
 
-void window_init(Window *window, int width, int height, char *title) {
-  assert(window != NULL);
+
+Window *window_create(int width, int height, char *title) {
   assert(width > 0);
   assert(height > 0);
   assert(title != NULL);
+  Window *window = malloc_or_die(sizeof(Window));
   window->width = width;
   window->height = height;
   window->title = malloc_or_die(sizeof(char) * (strlen(title) + 1));
@@ -25,13 +19,16 @@ void window_init(Window *window, int width, int height, char *title) {
   group_init(window->group_buttons, window->width, 100, 0, window->height - 100, 5);
   window->group_pictureframe = malloc_or_die(sizeof(Group));
   group_init(window->group_pictureframe, window->width, window->height - 100, 0, 0, 5);
+  MLV_create_window(window->title, window->title, (unsigned int) window->width, (unsigned int) window->height);
+  return window;
 }
 
-void window_free(Window *window) {
+void window_destroy(Window *window) {
   assert(window != NULL);
   free(window->title);
   group_free(window->group_buttons);
   group_free(window->group_pictureframe);
+  free(window);
 }
 
 void window_add_button(Window *window, Button *button) {
@@ -44,11 +41,6 @@ void window_add_pictureframe(Window *window, PictureFrame *pictureFrame) {
   assert(window != NULL);
   assert(pictureFrame != NULL);
   group_add_component(window->group_pictureframe, &(pictureFrame->component));
-}
-
-void window_create(Window *window) {
-  assert(window != NULL);
-  MLV_create_window(window->title, window->title, (unsigned int) window->width, (unsigned int) window->height);
 }
 
 void window_print_buttons(Window *window) {
@@ -74,12 +66,13 @@ void window_wait_keyboard_or_mouse(MLV_Keyboard_button *keyboardButton, MLV_Keyb
 void window_click_keyboard_handler(Window *window, MLV_Keyboard_button *keyboardButton,
                                    MLV_Keyboard_modifier *keyboardModifier,
                                    int *unicode, int *mouse_x, int *mouse_y) {
-  window_wait_keyboard_or_mouse(keyboardButton,keyboardModifier,unicode,mouse_x,mouse_y);
+  window_wait_keyboard_or_mouse(keyboardButton, keyboardModifier, unicode, mouse_x, mouse_y);
   group_click_handler(*mouse_x, *mouse_y, &(window->group_buttons->component));
   group_click_handler(*mouse_x, *mouse_y, &(window->group_pictureframe->component));
 }
 
-void window_rendering(Window *window,PictureFrame *pictureFrame1,Canvas *canvasSrc, Canvas *canvasTarget, Morphing *morphing){
+void window_rendering(Window *window, PictureFrame *pictureFrame1, Canvas *canvasSrc, Canvas *canvasTarget,
+                      Morphing *morphing) {
   int i;
   window_print_pictureframes(window);
   for (i = 1; i <= frame; ++i) {

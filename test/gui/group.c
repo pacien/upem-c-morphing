@@ -30,7 +30,7 @@ static void test_group() {
     }
   }
   MLV_wait_seconds(15);
-  window_free(&window);*/
+  window_destroy(&window);*/
 }
 
 int main() {

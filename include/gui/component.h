@@ -1,5 +1,18 @@
 #ifndef UPEM_C_COMPONENT_H
 #define UPEM_C_COMPONENT_H
+
+/**
+ * Enum: Mode
+ *
+ * WAITING_BUTTON_SHOW - Waits a click on buttons to perform actions and paints the constraint points on the GUI
+ * WAITING_BUTTON_HIDE - Waits a click on buttons to perform actions and does not print the constraint points on the GUI
+ * INSERT_ORIGIN - Waits a click on the origin pictureframe and lock other components
+ * INSERT_TARGET - Waits a click on the target pictureframe and lock other components
+ * PRINTING - Force the application to paint the pictureframes
+ * EXITING - Exits the programme
+ * PRINTING_BUTTONS - paints the buttons
+ * RENDERING - launches the rendering mode
+ */
 typedef enum {
   WAITING_BUTTON_SHOW, WAITING_BUTTON_HIDE, INSERT_ORIGIN, INSERT_TARGET, PRINTING, EXITING, PRINTING_BUTTONS, RENDERING
 } Mode;

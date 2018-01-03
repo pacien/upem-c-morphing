@@ -1,20 +1,35 @@
 #include <assert.h>
-#include <gui/pictureframe.h>
-#include <MLV/MLV_all.h>
+#include "common/mem.h"
+#include "gui/pictureframe.h"
+#include "MLV/MLV_all.h"
 
-CartesianVector pictureframe_origin_split(const CartesianMapping *cartesianMapping) {
-  return cartesianMapping->origin;
+static bool pictureframe_is_selected(int x, int y, PictureFrame *pictureFrame) {
+  assert(pictureFrame != NULL);
+  int x1 = pictureFrame->component.x_pos;
+  int y1 = pictureFrame->component.y_pos;
+  int x2 = pictureFrame->component.x_pos + pictureFrame->component.width;
+  int y2 = pictureFrame->component.y_pos + pictureFrame->component.height;
+  if (x >= x1 && x <= x2 && y >= y1 && y <= y2) {
+    return true;
+  }
+  return false;
 }
 
-CartesianVector pictureframe_target_split(const CartesianMapping *cartesianMapping) {
-  return cartesianMapping->target;
+static CartesianVector pictureframe_conversion_to_pic(int x, int y, PictureFrame *pictureFrame) {
+  CartesianVector vector;
+  vector.x = x - pictureFrame->component.x_pos;
+  vector.y = y - pictureFrame->component.y_pos;
+  return vector;
 }
 
-void pictureframe_draw_canvas(PictureFrame *pictureFrame){
-  MLV_draw_image(pictureFrame->canvas->mlv, pictureFrame->component.x_pos, pictureFrame->component.y_pos);
+static CartesianVector pictureframe_conversion_to_origin(int x, int y, PictureFrame *pictureFrame) {
+  CartesianVector vector;
+  vector.x = x + pictureFrame->component.x_pos;
+  vector.y = y + pictureFrame->component.y_pos;
+  return vector;
 }
 
-void pictureframe_print(Component *parameterSelf) {
+static void pictureframe_print(Component *parameterSelf) {
   PictureFrame *self = (PictureFrame *) parameterSelf;
   pictureframe_draw_canvas(self);
   if (mode != WAITING_BUTTON_HIDE && mode != RENDERING) {
@@ -46,30 +61,12 @@ void pictureframe_print(Component *parameterSelf) {
   }
 }
 
-bool pictureframe_is_selected(int x, int y, PictureFrame *pictureFrame) {
-  assert(pictureFrame != NULL);
-  int x1 = pictureFrame->component.x_pos;
-  int y1 = pictureFrame->component.y_pos;
-  int x2 = pictureFrame->component.x_pos + pictureFrame->component.width;
-  int y2 = pictureFrame->component.y_pos + pictureFrame->component.height;
-  if (x >= x1 && x <= x2 && y >= y1 && y <= y2) {
-    return true;
-  }
-  return false;
+CartesianVector pictureframe_origin_split(const CartesianMapping *cartesianMapping) {
+  return cartesianMapping->origin;
 }
 
-CartesianVector pictureframe_conversion_to_pic(int x, int y, PictureFrame *pictureFrame) {
-  CartesianVector vector;
-  vector.x = x - pictureFrame->component.x_pos;
-  vector.y = y - pictureFrame->component.y_pos;
-  return vector;
-}
-
-CartesianVector pictureframe_conversion_to_origin(int x, int y, PictureFrame *pictureFrame) {
-  CartesianVector vector;
-  vector.x = x + pictureFrame->component.x_pos;
-  vector.y = y + pictureFrame->component.y_pos;
-  return vector;
+CartesianVector pictureframe_target_split(const CartesianMapping *cartesianMapping) {
+  return cartesianMapping->target;
 }
 
 void pictureframe_click_handler_origin(int x_pos, int y_pos, Component *parameterSelf) {
@@ -92,10 +89,13 @@ void pictureframe_click_handler_target(int x_pos, int y_pos, Component *paramete
   }
 }
 
-void pictureframe_init(PictureFrame *pictureFrame, int width, int height, int x_pos, int y_pos,
-                       CartesianMappingDivision cartesianMappingDivision, Morphing *morphing, Canvas *canvas,
-                       ClickHandler clickHandler) {
-  assert(pictureFrame != NULL);
+void pictureframe_draw_canvas(PictureFrame *pictureFrame) {
+  MLV_draw_image(pictureFrame->canvas->mlv, pictureFrame->component.x_pos, pictureFrame->component.y_pos);
+}
+
+PictureFrame *pictureframe_create(int width, int height, int x_pos, int y_pos,
+                                  CartesianMappingDivision cartesianMappingDivision, Morphing *morphing, Canvas *canvas,
+                                  ClickHandler clickHandler) {
   assert(width > 0);
   assert(height > 0);
   assert(x_pos >= 0);
@@ -103,6 +103,7 @@ void pictureframe_init(PictureFrame *pictureFrame, int width, int height, int x_
   assert(cartesianMappingDivision != NULL);
   assert(morphing != NULL);
   assert(canvas != NULL);
+  PictureFrame *pictureFrame = malloc_or_die(sizeof(PictureFrame));
   pictureFrame->component.width = width;
   pictureFrame->component.height = height;
   pictureFrame->component.x_pos = x_pos;
@@ -112,4 +113,9 @@ void pictureframe_init(PictureFrame *pictureFrame, int width, int height, int x_
   pictureFrame->morphing = morphing;
   pictureFrame->canvas = canvas;
   pictureFrame->cartesianMappingDivision = cartesianMappingDivision;
+  return pictureFrame;
+}
+
+void pictureframe_destroy(PictureFrame *pictureFrame){
+  free(pictureFrame);
 }

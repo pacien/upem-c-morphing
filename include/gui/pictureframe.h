@@ -1,14 +1,17 @@
 #ifndef UPEM_MORPHING_PITUREFRAME
 #define UPEM_MORPHING_PITUREFRAME
 
-#include <morpher/morphing.h>
-#include <painter/canvas.h>
+#include "morpher/morphing.h"
+#include "painter/canvas.h"
 #include "component.h"
+
 /**
  * File: pictureframe.h
  */
 
+/*Needed storage point to share memory between the origin PictureFrame and the target PictureFrame. It ables to cancel the Add constraint functionality*/
 CartesianVector savedPoint;
+
 /**
  * Type: CartesianMappingDivision
  * Type of functions needed to split CartesianMapping and keep only the CartesianVector needed, related to the type of PictureFrame involved
@@ -50,24 +53,35 @@ CartesianVector pictureframe_origin_split(const CartesianMapping *cartesianMappi
  */
 CartesianVector pictureframe_target_split(const CartesianMapping *cartesianMapping);
 
-bool pictureframe_is_selected(int x, int y, PictureFrame *pictureFrame);
-
 /**
- * Function: pictureframe_conversion_to_origin
- * Returns the relative coordinate on the picture corresponding to the input values
+ * Function: pictureframe_create
+ * Allocates and initializes the PictureFrame.
  *
  * Parameters:
- *  x - value on x axis from the origin of the window to convert
- *  y - value on y axis from the origin of the window to convert
- *  *pictureFrame - pointer to the reference pictureframe that will give his relative coordinates
+ *  width - width of the current picture
+ *  height - height of the current picture
+ *  x_pos - position of the button on x axis
+ *  y_pos - position of the button on y axis
+ *  cartesianMappingDivision - pointer of function needed to select the right CartesianVector inside the morphing's CartesianMapping
+ *  *morphing - pointer to the morphing
+ *  *canvas - pointer to the canvas
+ *  clickHandler - pointer of function that will be loaded inside our pictureframe
+ *
+ * Returns:
+ *  A pointer of PictureFrame
  */
-CartesianVector pictureframe_conversion_to_pic(int x, int y, PictureFrame *pictureFrame);
+PictureFrame *pictureframe_create(int width, int height, int x_pos, int y_pos,
+                                  CartesianMappingDivision cartesianMappingDivision, Morphing *morphing, Canvas *canvas,
+                                  ClickHandler clickHandler);
 
-CartesianVector pictureframe_conversion_to_origin(int x, int y, PictureFrame *pictureFrame);
-
-void pictureframe_init(PictureFrame *pictureFrame, int width, int height, int x_pos, int y_pos,
-                       CartesianMappingDivision cartesianMappingDivision, Morphing *morphing, Canvas *canvas,
-                       ClickHandler clickHandler);
+/**
+ * Function: pictureframe_destroy
+ * Frees the current PictureFrame
+ *
+ * Parameters:
+ *  *pictureframe - pointer to the current PictureFrame
+ */
+void pictureframe_destroy(PictureFrame *pictureFrame);
 
 /**
  * Function: pictureframe_draw_canvas
@@ -78,14 +92,6 @@ void pictureframe_init(PictureFrame *pictureFrame, int width, int height, int x_
  */
 void pictureframe_draw_canvas(PictureFrame *pictureFrame);
 
-/**
- * Function: pictureframe_print
- * Prints the PictureFrame (The Canvas involved, plus the triangles and points of the Morphing)
- *
- * Parameters:
- *  *parameterSelf - pointer that will be casted into a PictureFrame to be printed
- */
-void pictureframe_print(Component *parameterSelf);
 
 /**
  * Function: pictureframe_click_handler_origin

@@ -5,6 +5,7 @@
 
 /**
  * File: gui.h
+ * Graphical user interface handling
  */
 
 

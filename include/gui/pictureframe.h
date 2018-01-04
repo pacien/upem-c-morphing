@@ -7,6 +7,7 @@
 
 /**
  * File: pictureframe.h
+ * Pictures handling.
  */
 
 /*Needed storage point to share memory between the origin PictureFrame and the target PictureFrame. It ables to cancel the Add constraint functionality*/

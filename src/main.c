@@ -4,6 +4,13 @@
 #include <MLV/MLV_path.h>
 #include "gui/gui.h"
 
+static inline void print_help() {
+  printf("Usage: morph [--help] <path to base image> <path to end image>\n\n"
+          "To use the morphing, you need to put two correct paths to image files.\n\n"
+          "Accepted input imaege formats are: ICO, CUR, BMP, PNM, XPM, LBM, PCX, GIF, JPEG, PNG, TGA, TIFF, and XV.\n\n"
+          "Project made by: Pacien TRAN-GIRARD and Adam NAILI\n");
+}
+
 int main(int argc, char **argv) {
   int opt = 0;
   int help = -1;
@@ -23,8 +30,7 @@ int main(int argc, char **argv) {
     }
   }
   if (help == 0) {
-    printf(
-     "--Morphing's Help--\nTo use the morphing, you need to put two correct paths to image files.\n\nCorrect image format :\nICO(Icon)/CUR(Cursor)/BMP, PNM (PPM/PGM/PBM), XPM, LBM(IFF ILBM), PCX, GIF, JPEG, PNG, TGA, TIFF, and XV.\n\nMorphing made by:\n Pacien TRAN-GIRARD and Adam NAILI\n");
+    print_help();
   } else {
     int nbArg = argc - optind;
     if (nbArg < 2) {

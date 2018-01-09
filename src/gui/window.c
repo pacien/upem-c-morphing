@@ -1,6 +1,7 @@
 #include "gui/window.h"
 #include <assert.h>
 #include <MLV/MLV_all.h>
+#include <gui/pictureframe.h>
 #include "painter/rasterizer.h"
 #include "common/mem.h"
 
@@ -69,16 +70,18 @@ void window_click_keyboard_handler(Window *window, MLV_Keyboard_button *keyboard
   group_click_handler(*mouse_x, *mouse_y, &(window->group_pictureframe->component));
 }
 
-void window_rendering(Window *window, PictureFrame *pictureFrame1, Canvas *canvasSrc, Canvas *canvasTarget,
+void window_rendering(Window *window, PictureFrame pictureFrame1, Canvas *canvasSrc, Canvas *canvasTarget,
                       Morphing *morphing) {
   int i;
   window_print_pictureframes(window);
   for (i = 1; i <= frame; ++i) {
-    pictureFrame1->canvas = rasterize(canvasSrc, canvasTarget, morphing, (TimeVector) (i / (float) frame));
-    pictureframe_draw_canvas(pictureFrame1);
+    pictureFrame1.canvas = rasterize(canvasSrc, canvasTarget, morphing, (TimeVector) (i / (float) frame));
+    pictureframe_draw_canvas(&pictureFrame1);
     MLV_actualise_window();
-    canvas_destroy(pictureFrame1->canvas);
+    canvas_destroy(pictureFrame1.canvas);
+    MLV_wait_milliseconds(16);
   }
-  mode = EXITING;
-  MLV_wait_seconds(15);
+  mode = WAITING_BUTTON_SHOW;
+  window_print_pictureframes(window);
+  MLV_actualise_window();
 }

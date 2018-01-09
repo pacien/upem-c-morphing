@@ -104,7 +104,7 @@ void gui_handle_event(GUI *gui) {
       mode = WAITING_BUTTON_SHOW;
       break;
     case RENDERING:
-      window_rendering(gui->window, gui->pictureFrame1, gui->canvasSrc, gui->canvasTrg, gui->morphing);
+      window_rendering(gui->window, *(gui->pictureFrame1), gui->canvasSrc, gui->canvasTrg, gui->morphing);
       break;
     case INSERT_TARGET:
       if (keyboardButton == MLV_KEYBOARD_ESCAPE) {

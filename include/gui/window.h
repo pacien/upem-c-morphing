@@ -119,7 +119,7 @@ void window_click_keyboard_handler(Window *window, MLV_Keyboard_button *keyboard
  *  *canvasTarget - pointer to the target Canvas
  *  *morphing - pointer to the Morphing that will makes the transformation
  */
-void window_rendering(Window *window, PictureFrame *pictureFrame1, Canvas *canvasSrc, Canvas *canvasTarget,
+void window_rendering(Window *window, PictureFrame pictureFrame1, Canvas *canvasSrc, Canvas *canvasTarget,
                       Morphing *morphing);
 
 #endif

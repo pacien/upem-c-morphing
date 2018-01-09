@@ -1,7 +1,6 @@
 #include "gui/window.h"
 #include <assert.h>
 #include <MLV/MLV_all.h>
-#include <gui/pictureframe.h>
 #include "painter/rasterizer.h"
 #include "common/mem.h"
 

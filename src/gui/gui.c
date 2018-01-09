@@ -1,6 +1,5 @@
 #include "gui/gui.h"
 #include <MLV/MLV_all.h>
-#include "gui/window.h"
 #include "common/mem.h"
 
 GUI *gui_create(const char *fpath1, const char *fpath2) {

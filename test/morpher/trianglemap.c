@@ -3,6 +3,13 @@
 #include <assert.h>
 #include "morpher/quadrilateral.h"
 
+/**
+ * File: trianglemap.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 static inline bool neighbors_equals(TriangleMap *neighbors[],
                                     TriangleMap *n1, TriangleMap *n2, TriangleMap *n3) {
   return neighbors[0] == n1 && neighbors[1] == n2 && neighbors[2] == n3;

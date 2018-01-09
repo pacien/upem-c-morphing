@@ -1,6 +1,13 @@
 #include "painter/rasterizer.h"
 #include <assert.h>
 
+/**
+ * File: rasterizer.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 static void test_rasterize() {
   Morphing *morphing;
   Canvas *origin, *target, *result;

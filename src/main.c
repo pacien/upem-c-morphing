@@ -4,6 +4,13 @@
 #include <MLV/MLV_path.h>
 #include "gui/gui.h"
 
+/**
+ * File: main.c
+ *
+ * Author:
+ *   Adam NAILI
+ */
+
 static inline void print_help() {
   printf("Usage: morph [--help] <path to base image> <path to end image>\n\n"
           "To use the morphing, you need to put two correct paths to image files.\n\n"

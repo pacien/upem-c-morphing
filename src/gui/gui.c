@@ -2,6 +2,13 @@
 #include <MLV/MLV_all.h>
 #include "common/mem.h"
 
+/**
+ * File: gui.c
+ *
+ * Author:
+ *   Adam NAILI
+ */
+
 GUI *gui_create(const char *fpath1, const char *fpath2) {
   GUI *gui = malloc_or_die(sizeof(GUI));
   gui->window = window_create(500, 500, "Morphing");

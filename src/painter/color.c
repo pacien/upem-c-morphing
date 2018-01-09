@@ -1,6 +1,13 @@
 #include "painter/color.h"
 #include <math.h>
 
+/**
+ * File: color.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 static inline ColorComponent blend_component(ColorComponent origin, ColorComponent target, TimeVector frame) {
   return (ColorComponent) round(sqrt((TIME_UNIT - frame) * pow(origin, 2) + frame * pow(target, 2)));
 }

@@ -1,5 +1,12 @@
 #include "morpher/matrix.h"
 
+/**
+ * File: matrix.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 IntVector matrix_int_det2(IntVector u11, IntVector u12,
                           IntVector u21, IntVector u22) {
 

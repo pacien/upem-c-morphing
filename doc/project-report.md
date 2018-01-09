@@ -119,6 +119,8 @@ triangle lookup from arbitrarily given coordinates and a simple way of traversin
 The painter module provides functions to apply a previously constructed morphing to a base and a target image,
 generating a morphed image as the output.
 
+None of its inputs are altered, allowing later reuse of the same base morphing.
+
 A per-triangle rasterisation algorithm has been implemented instead of the suggested per-pixel triangle lookup for
 performance reasons, as the whole process was meant to run in a single thread on the CPU, not benefiting the massive
 parallelisation possibility that a GPU would have offered.

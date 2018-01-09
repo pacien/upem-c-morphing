@@ -2,6 +2,13 @@
 #include <math.h>
 #include <assert.h>
 
+/**
+ * File: rasterizer.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 static inline IntVector i(double (*f)(double, double), RealVector a, RealVector b) {
   return (IntVector) floor(f(a, b));
 }

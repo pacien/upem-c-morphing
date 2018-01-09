@@ -4,6 +4,13 @@
 #include <MLV/MLV_shape.h>
 #include "common/mem.h"
 
+/**
+ * File: group.c
+ *
+ * Author:
+ *   Adam NAILI
+ */
+
 void group_print(Component *parameterSelf) {
   assert(parameterSelf != NULL);
   Group *self = (Group *) parameterSelf;

@@ -1,6 +1,13 @@
 #include "painter/canvas.h"
 #include "common/mem.h"
 
+/**
+ * File: canvas.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 Canvas *canvas_create(IntVector width, IntVector height) {
   Canvas *c = malloc_or_die(sizeof(Canvas));
   c->mlv = MLV_create_image(width, height);

@@ -6,6 +6,13 @@
 #include <MLV/MLV_all.h>
 #include "common/mem.h"
 
+/**
+ * File: button.c
+ *
+ * Author:
+ *   Adam NAILI
+ */
+
 static bool button_is_selected(int x, int y, Button *button) {
   assert(button != NULL);
   int x1 = button->component.x_pos;

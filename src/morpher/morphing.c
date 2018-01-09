@@ -2,6 +2,13 @@
 #include <malloc.h>
 #include "common/mem.h"
 
+/**
+ * File: morphing.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 static inline TriangleMap *init_trianglemap(IntVector width, IntVector height) {
   TriangleMap *bottom_left = trianglemap_create(m(0, 0), m(0, height), m(width, height));
   TriangleMap *top_right = trianglemap_create(m(0, 0), m(width, height), m(width, 0));

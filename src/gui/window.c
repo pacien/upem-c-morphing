@@ -4,6 +4,13 @@
 #include "painter/rasterizer.h"
 #include "common/mem.h"
 
+/**
+ * File: window.c
+ *
+ * Author:
+ *   Adam NAILI
+ */
+
 Window *window_create(int width, int height, char *title) {
   assert(width > 0);
   assert(height > 0);

@@ -3,6 +3,13 @@
 #include <assert.h>
 #include "morpher/matrix.h"
 
+/**
+ * File: quadrilateral.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 static inline IntVector p2(IntVector n) {
   return n * n;
 }

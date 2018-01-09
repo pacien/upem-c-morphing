@@ -4,6 +4,13 @@
 #include "morpher/quadrilateral.h"
 #include "common/mem.h"
 
+/**
+ * File: trianglemap.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 static void propagate_delaunay(TriangleMap *start, TriangleMap *neighbor) {
   assert(start != NULL && neighbor != NULL);
   if (!quadrilateral_is_delaunay(start, neighbor)) {

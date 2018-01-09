@@ -3,6 +3,13 @@
 #include <MLV/MLV_all.h>
 #include "common/mem.h"
 
+/**
+ * File: pictureframe.c
+ *
+ * Author:
+ *   Adam NAILI
+ */
+
 static bool pictureframe_is_selected(int x, int y, PictureFrame *pictureFrame) {
   assert(pictureFrame != NULL);
   int x1 = pictureFrame->component.x_pos;

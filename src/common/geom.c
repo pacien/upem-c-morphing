@@ -2,6 +2,13 @@
 #include <math.h>
 #include "morpher/matrix.h"
 
+/**
+ * File: geom.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 static inline IntVector int_round(RealVector x) {
   return (IntVector) round(x);
 }

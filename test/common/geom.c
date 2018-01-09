@@ -1,6 +1,13 @@
 #include "common/geom.h"
 #include <assert.h>
 
+/**
+ * File: geom.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 static void test_square_area() {
   assert(square_area(v(0, 0), v(10, 0), v(10, 10)) == 100);
   assert(square_area(v(0, 0), v(0, 10), v(10, 10)) == -100);

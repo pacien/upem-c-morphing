@@ -1,6 +1,13 @@
 #include "morpher/matrix.h"
 #include <assert.h>
 
+/**
+ * File: matrix.c
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
+ */
+
 static void test_matrix_int_det2() {
   assert(matrix_int_det2(5, 7,
                          2, 3) == 1);

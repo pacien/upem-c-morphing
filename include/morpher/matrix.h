@@ -5,6 +5,9 @@
  * File: matrix.h
  * > The matrix is a system Neo, that system is our enemy.
  * -- Morpheus
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 #include "common/geom.h"

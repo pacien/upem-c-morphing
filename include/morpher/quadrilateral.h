@@ -4,6 +4,9 @@
 /**
  * File: quadrilateral.h
  * Operations on quadrilaterals formed by adjacent triangles pairs.
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 #include <stdbool.h>

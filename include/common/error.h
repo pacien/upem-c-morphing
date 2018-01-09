@@ -3,6 +3,9 @@
 
 /**
  * File: error.h
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 /**

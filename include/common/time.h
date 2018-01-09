@@ -6,6 +6,9 @@
  * > Who can say where the road goes...
  * > Where the day flows, only time...
  * -- Enya
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 #include "geom.h"

@@ -3,6 +3,9 @@
 /**
  * File: button.h
  * Buttons handling
+ *
+ * Author:
+ *   Adam NAILI
  */
 
 #include "component.h"

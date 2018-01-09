@@ -5,6 +5,9 @@
  * File: rasterizer.h
  * > Everyday is a good day when you paint.
  * -- Bob Ross
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 #include "painter/canvas.h"

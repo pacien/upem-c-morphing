@@ -1,11 +1,13 @@
 #ifndef UPEM_MORPHING_TEXTVIEW
 #define UPEM_MORPHING_TEXTVIEW
 
-#include "component.h"
-
 /**
  * File: textview.h
+ *
+ * Author:
+ *   Adam NAILI
  */
+#include "component.h"
 
 typedef struct {
   Component component;

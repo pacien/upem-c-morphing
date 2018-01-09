@@ -3,6 +3,9 @@
 
 /**
  * File: mem.h
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 #include <stddef.h>

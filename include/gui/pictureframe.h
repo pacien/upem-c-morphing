@@ -1,13 +1,16 @@
 #ifndef UPEM_MORPHING_PITUREFRAME
 #define UPEM_MORPHING_PITUREFRAME
 
+/**
+ * File: pictureframe.h
+ *
+ * Author:
+ *   Adam NAILI
+ */
+
 #include "morpher/morphing.h"
 #include "painter/canvas.h"
 #include "component.h"
-
-/**
- * File: pictureframe.h
- */
 
 /*Needed storage point to share memory between the origin PictureFrame and the target PictureFrame. It ables to cancel the Add constraint functionality*/
 CartesianVector savedPoint;

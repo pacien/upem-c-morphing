@@ -3,6 +3,9 @@
 
 /**
  * File: geom.h
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 #include <stdbool.h>

@@ -4,6 +4,9 @@
 /**
  * File: morphing.h
  * Coordinate mapping for morphing transforms.
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 #include "common/geom.h"

@@ -1,12 +1,14 @@
 #ifndef UPEM_MORPHING_GUI
 #define UPEM_MORPHING_GUI
 
-#include "gui/window.h"
-
 /**
  * File: gui.h
+ *
+ * Author:
+ *   Adam NAILI
  */
 
+#include "gui/window.h"
 
 /**
  * Struct: GUI

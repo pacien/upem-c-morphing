@@ -1,5 +1,12 @@
-#ifndef UPEM_C_COMPONENT_H
-#define UPEM_C_COMPONENT_H
+#ifndef UPEM_MORPHING_COMPONENT
+#define UPEM_MORPHING_COMPONENT
+
+/**
+ * File: component.h
+ *
+ * Author:
+ *   Adam NAILI
+ */
 
 /**
  * Enum: Mode

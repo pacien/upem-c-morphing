@@ -1,14 +1,18 @@
 #ifndef UPEM_MORPHING_WINDOW
 #define UPEM_MORPHING_WINDOW
 
+/**
+ * File: window.h
+ * Windows and components handling.
+ *
+ * Author:
+ *   Adam NAILI
+ */
+
 #include "MLV/MLV_keyboard.h"
 #include "group.h"
 #include "button.h"
 #include "pictureframe.h"
-/**
- * File: window.h
- * Windows and components handling.
- */
 
 /**
  * Struct: Window

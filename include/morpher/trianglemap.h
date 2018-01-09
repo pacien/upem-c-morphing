@@ -4,6 +4,9 @@
 /**
  * File: trianglemap.h
  * Represents a triangle map in a triangulation, in a plane oriented left to right and top to bottom.
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 #include <stdbool.h>

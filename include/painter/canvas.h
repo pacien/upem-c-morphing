@@ -3,6 +3,9 @@
 
 /**
  * File: canvas.h
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 #include <MLV/MLV_image.h>

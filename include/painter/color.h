@@ -5,6 +5,9 @@
  * File: color.h
  * > Coming, colors in the air! Oh, everywhere!
  * -- The Rolling Stones
+ *
+ * Author:
+ *   Pacien TRAN-GIRARD
  */
 
 #include <MLV/MLV_color.h>

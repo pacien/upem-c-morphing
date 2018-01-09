@@ -4,7 +4,11 @@
 /**
  * File: group.h
  * Group of components
+ *
+ * Author:
+ *   Adam NAILI
  */
+
 #include "component.h"
 
 /**

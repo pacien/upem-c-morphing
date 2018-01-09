@@ -1,7 +1,7 @@
 ---
 title: "BSc IN S5 / Advanced C programming / Morphing"
 author: [Pacien TRAN-GIRARD, Adam NAILI]
-date: 2017-12-28
+date: 2018-01-09
 ...
 
 # Project description
@@ -54,8 +54,6 @@ The program has been tested on Debian 9 and is known to run correctly on this pl
 ## Additional features
 
 The program supports pairs of pictures of variable sizes.
-
-It also offers the possibility to save morphing animations in GIF format.
 
 ## Bugs
 
@@ -128,6 +126,8 @@ parallelisation possibility that a GPU would have offered.
 The colour of each pixel resulting from the rasterisation is interpolated taking care of the compression applied to the
 RBGa vectors from the two base images: each component is square-rooted back to its raw value before blending.
 
+\newpage
+
 ### GUI
 
 The Graphical User Interface is designed with a modular component-based architecture. That architecture implies an
@@ -145,12 +145,6 @@ state for the application and components. The rendering process is done by compu
 frame combined with a time. By this implementation, the application is not using MLV_Animation.
 
 \newpage
-
-## Miscellaneous notes
-
-The animation export feature relies on the MLV library for exporting the frames and ImageMagick for generating the final
-animated GIF. This utility library is called as an external command line tool as its direct use as a C library was not
-permitted.
 
 # References
 

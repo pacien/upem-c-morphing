@@ -1,4 +1,4 @@
-#include <gui/component.h>
+#include "gui/component.h"
 
 Mode mode = WAITING_BUTTON_SHOW;
 

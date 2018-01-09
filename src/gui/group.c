@@ -1,10 +1,8 @@
-#include <stdlib.h>
-#include <gui/group.h>
-#include <common/mem.h>
+#include "gui/group.h"
 #include <assert.h>
-#include <gui/component.h>
-#include "MLV/MLV_shape.h"
-#include "MLV/MLV_window.h"
+#include <stdlib.h>
+#include <MLV/MLV_shape.h>
+#include "common/mem.h"
 
 void group_print(Component *parameterSelf) {
   assert(parameterSelf != NULL);
@@ -84,4 +82,3 @@ void group_add_component(Group *group, Component *component) {
 
   }
 }
-

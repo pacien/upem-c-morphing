@@ -11,7 +11,7 @@
  *   Pacien TRAN-GIRARD
  */
 
-#include "geom.h"
+#include "common/geom.h"
 
 /**
  * Constants: Time vectors

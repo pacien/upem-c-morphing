@@ -67,4 +67,4 @@ typedef struct Component {
   PrintMethod print_method;
 } Component;
 
-#endif //UPEM_C_COMPONENT_H
+#endif

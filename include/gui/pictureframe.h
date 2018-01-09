@@ -8,11 +8,14 @@
  *   Adam NAILI
  */
 
+#include "gui/component.h"
 #include "morpher/morphing.h"
 #include "painter/canvas.h"
-#include "component.h"
 
-/*Needed storage point to share memory between the origin PictureFrame and the target PictureFrame. It ables to cancel the Add constraint functionality*/
+/*
+ * Needed storage point to share memory between the origin PictureFrame and the target PictureFrame.
+ * It ables to cancel the Add constraint functionality
+ */
 CartesianVector savedPoint;
 
 /**
@@ -117,6 +120,5 @@ void pictureframe_click_handler_origin(int x_pos, int y_pos, Component *paramete
  *  *parameterSelf - pointer that will be casted into a PictureFrame
  */
 void pictureframe_click_handler_target(int x_pos, int y_pos, Component *parameterSelf);
-
 
 #endif

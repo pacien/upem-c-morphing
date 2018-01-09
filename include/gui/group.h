@@ -9,7 +9,7 @@
  *   Adam NAILI
  */
 
-#include "component.h"
+#include "gui/component.h"
 
 /**
  * Struct: _GroupElement
@@ -92,6 +92,5 @@ void group_free(Group *group);
  *  *component - component which is added to the group
  */
 void group_add_component(Group *group, Component *component);
-
 
 #endif

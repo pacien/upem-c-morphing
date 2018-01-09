@@ -9,10 +9,10 @@
  *   Adam NAILI
  */
 
-#include "MLV/MLV_keyboard.h"
-#include "group.h"
-#include "button.h"
-#include "pictureframe.h"
+#include <MLV/MLV_keyboard.h>
+#include "gui/group.h"
+#include "gui/button.h"
+#include "gui/pictureframe.h"
 
 /**
  * Struct: Window

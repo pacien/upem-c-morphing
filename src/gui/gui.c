@@ -1,8 +1,7 @@
-#include "gui/window.h"
 #include "gui/gui.h"
+#include <MLV/MLV_all.h>
+#include "gui/window.h"
 #include "common/mem.h"
-#include "MLV/MLV_all.h"
-
 
 GUI *gui_create(const char *fpath1, const char *fpath2) {
   GUI *gui = malloc_or_die(sizeof(GUI));

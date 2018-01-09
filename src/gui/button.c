@@ -1,11 +1,10 @@
+#include "gui/button.h"
 #include <stdlib.h>
 #include <stdbool.h>
 #include <assert.h>
 #include <string.h>
-#include "gui/button.h"
-#include "MLV/MLV_all.h"
+#include <MLV/MLV_all.h>
 #include "common/mem.h"
-
 
 static bool button_is_selected(int x, int y, Button *button) {
   assert(button != NULL);
@@ -104,7 +103,7 @@ Button *button_create(const char *text, int sizeInterligne, int x_pos, int y_pos
   return button;
 }
 
-void button_destroy(Button *button){
+void button_destroy(Button *button) {
   assert(button != NULL);
   free(button->label);
   free(button);

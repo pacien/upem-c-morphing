@@ -1,10 +1,8 @@
-#include <stdlib.h>
-#include <assert.h>
 #include "gui/window.h"
-#include "MLV/MLV_all.h"
+#include <assert.h>
+#include <MLV/MLV_all.h>
 #include "painter/rasterizer.h"
 #include "common/mem.h"
-
 
 Window *window_create(int width, int height, char *title) {
   assert(width > 0);

@@ -7,7 +7,8 @@
  * Author:
  *   Adam NAILI
  */
-#include "component.h"
+
+#include "gui/component.h"
 
 typedef struct {
   Component component;

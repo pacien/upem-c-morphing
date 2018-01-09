@@ -1,6 +1,5 @@
 #include "common/geom.h"
 #include <math.h>
-#include <common/geom.h>
 #include "morpher/matrix.h"
 
 static inline IntVector int_round(RealVector x) {

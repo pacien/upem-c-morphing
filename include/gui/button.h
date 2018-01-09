@@ -1,5 +1,6 @@
 #ifndef UPEM_MORPHING_BUTTON
 #define UPEM_MORPHING_BUTTON
+
 /**
  * File: button.h
  * Buttons handling
@@ -8,7 +9,7 @@
  *   Adam NAILI
  */
 
-#include "component.h"
+#include "gui/component.h"
 
 /**
  * Struct: Button
@@ -39,8 +40,7 @@ typedef struct {
  * Returns:
  *  A pointer of Button
  */
-Button *
-button_create(const char *text, int sizeInterligne, int x_pos, int y_pos, ClickHandler clickHandler);
+Button *button_create(const char *text, int sizeInterligne, int x_pos, int y_pos, ClickHandler clickHandler);
 
 /**
  * Function: button_destroy
@@ -95,7 +95,6 @@ void button_click_exit(int x, int y, Component *parameterSelf);
  */
 void button_click_none(int x, int y, Component *parameterSelf);
 
-
 /**
  * Function: button_click_more_frame
  * Multiplies by two the number of frames to create when rendering.
@@ -128,6 +127,5 @@ void button_click_less_frame(int x, int y, Component *parameterSelf);
  *  *parameterSelf - pointer on the button that is clicked
  */
 void button_click_rendering(int x, int y, Component *parameterSelf);
-
 
 #endif

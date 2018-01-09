@@ -1,7 +1,7 @@
-#include <assert.h>
-#include "common/mem.h"
 #include "gui/pictureframe.h"
-#include "MLV/MLV_all.h"
+#include <assert.h>
+#include <MLV/MLV_all.h>
+#include "common/mem.h"
 
 static bool pictureframe_is_selected(int x, int y, PictureFrame *pictureFrame) {
   assert(pictureFrame != NULL);
@@ -116,6 +116,6 @@ PictureFrame *pictureframe_create(int width, int height, int x_pos, int y_pos,
   return pictureFrame;
 }
 
-void pictureframe_destroy(PictureFrame *pictureFrame){
+void pictureframe_destroy(PictureFrame *pictureFrame) {
   free(pictureFrame);
 }

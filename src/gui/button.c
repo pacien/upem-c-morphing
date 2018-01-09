@@ -1,9 +1,9 @@
+#include "gui/button.h"
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
 #include <stdbool.h>
 #include <MLV/MLV_all.h>
-#include "gui/button.h"
 #include "common/mem.h"
 
 static bool button_is_selected(int x, int y, Button *button) {

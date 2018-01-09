@@ -131,18 +131,19 @@ RBGa vectors from the two base images: each component is square-rooted back to i
 ### GUI
 
 The Graphical User Interface is designed with a modular component-based architecture. That architecture implies an
-Object-Oriented Programming's vision. Thanks to that, the application is very flexible for adding components and
+Object-Oriented Programming's vision that makes the application very flexible for adding components and
 placing them. The components created are groups, buttons, and picture frames that are all based on a common structure
 called Component. Groups federate Components of any type and place them by a margin management.
 
-Thanks to a click handler and a printing function stored inside Components, it is possible to perform the actions on 
+Click handlers and printing functions stored inside Components make possible to perform the actions on 
 click or to paint the component without knowing what is stored inside the group. The group is a component that handles 
 clicks and is able to paint itself by using the click handler and the painter function of the Component contained inside
-its list.  In other words, it delegates to the Components the action to perform. 
+its list. In other words, it delegates to the Components the action to perform. 
 
 It also wraps some libMLV low level functions to create basic application features that can be used to create coherent 
 state for the application and components. The rendering process is done by computing intermediate morphing between each 
-frame combined with a time. By this implementation, the application is not using MLV_Animation.
+frame combined with a time. This implementation replaces the usage of MLV_Animation which implies higher memory usage 
+and lower fluidity due to the needed pre-calculation.
 
 \newpage
 

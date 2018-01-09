@@ -3,6 +3,7 @@
 
 /**
  * File: pictureframe.h
+ * Pictures handling.
  *
  * Author:
  *   Adam NAILI

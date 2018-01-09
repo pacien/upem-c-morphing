@@ -3,6 +3,7 @@
 
 /**
  * File: gui.h
+ * Graphical user interface handling
  *
  * Author:
  *   Adam NAILI

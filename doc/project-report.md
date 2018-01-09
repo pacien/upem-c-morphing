@@ -82,7 +82,7 @@ Some MLV library functions have been partly wrapped to ensure the coherence with
 _"Sir, the testing?"_, Caroline reminds.
 Almost all utility, logic and mathematical functions have been covered by automatic unit tests to reduce the risk of
 small-but-yet-critical mistakes and regressions during the development. Graphical unit tests requiring human validation
-have also been written in order to test the graphical user interface at the component level.
+have also been used during the development in order to test the graphical user interface at the component level.
 
 Assertions have also been used within the module implementations, enforcing pre- and post-conditions inside functions.
 
